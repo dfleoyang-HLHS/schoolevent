@@ -1,11 +1,12 @@
 import React from 'react';
-import { BookOpen, FileText, Compass, Download, ShieldCheck, GraduationCap, Scale, Users, HelpCircle } from 'lucide-react';
+import { BookOpen, FileText, Compass, Download, ShieldCheck, GraduationCap, Scale, Users, HelpCircle, FileCheck } from 'lucide-react';
 
 interface HeaderProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
   onOpenExport: () => void;
   onOpenTriage: () => void;
+  onOpenStatutes?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -13,6 +14,7 @@ export const Header: React.FC<HeaderProps> = ({
   setActiveTab,
   onOpenExport,
   onOpenTriage,
+  onOpenStatutes,
 }) => {
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-xs">
@@ -89,10 +91,22 @@ export const Header: React.FC<HeaderProps> = ({
               校園人才庫
             </button>
 
+            {/* Quick Statute Modal button */}
+            {onOpenStatutes && (
+              <button
+                onClick={onOpenStatutes}
+                className="flex items-center gap-1.5 ml-1 px-2.5 py-1.5 text-xs font-semibold text-slate-700 hover:text-blue-950 bg-slate-100 hover:bg-blue-50 border border-slate-200 rounded-md transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+                title="彈出法規全文與官方 PDF 視窗"
+              >
+                <BookOpen className="w-3.5 h-3.5 text-blue-700" />
+                <span>法規全文視窗</span>
+              </button>
+            )}
+
             {/* Quick Diagnostic launcher in menu */}
             <button
               onClick={onOpenTriage}
-              className="flex items-center gap-1.5 ml-2 px-3 py-1.5 text-xs font-semibold text-blue-700 bg-blue-50/80 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+              className="flex items-center gap-1.5 ml-1 px-3 py-1.5 text-xs font-semibold text-blue-700 bg-blue-50/80 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors whitespace-nowrap shrink-0 cursor-pointer"
             >
               <Compass className="w-3.5 h-3.5 text-blue-600" />
               <span>分流診斷器</span>
@@ -100,7 +114,7 @@ export const Header: React.FC<HeaderProps> = ({
           </nav>
 
           {/* Zone 3: Primary action */}
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={onOpenExport}
               className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium text-white bg-blue-900 hover:bg-blue-800 rounded-lg transition-colors whitespace-nowrap shrink-0 shadow-xs active:scale-[0.98] cursor-pointer"
@@ -116,7 +130,7 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="md:hidden flex items-center justify-around border-t border-slate-200 bg-slate-50/95 px-2 py-2 text-xs text-slate-600">
         <button
           onClick={() => setActiveTab('legal')}
-          className={`px-2.5 py-1 rounded transition-colors ${
+          className={`px-2 py-1 rounded transition-colors ${
             activeTab === 'legal' ? 'bg-blue-900 font-semibold text-white shadow-xs' : 'hover:text-blue-900'
           }`}
         >
@@ -124,7 +138,7 @@ export const Header: React.FC<HeaderProps> = ({
         </button>
         <button
           onClick={() => setActiveTab('org')}
-          className={`px-2.5 py-1 rounded transition-colors ${
+          className={`px-2 py-1 rounded transition-colors ${
             activeTab === 'org' ? 'bg-blue-900 font-semibold text-white shadow-xs' : 'hover:text-blue-900'
           }`}
         >
@@ -132,7 +146,7 @@ export const Header: React.FC<HeaderProps> = ({
         </button>
         <button
           onClick={() => setActiveTab('flow')}
-          className={`px-2.5 py-1 rounded transition-colors ${
+          className={`px-2 py-1 rounded transition-colors ${
             activeTab === 'flow' ? 'bg-blue-900 font-semibold text-white shadow-xs' : 'hover:text-blue-900'
           }`}
         >
@@ -140,7 +154,7 @@ export const Header: React.FC<HeaderProps> = ({
         </button>
         <button
           onClick={() => setActiveTab('faq')}
-          className={`px-2.5 py-1 rounded transition-colors ${
+          className={`px-2 py-1 rounded transition-colors ${
             activeTab === 'faq' ? 'bg-blue-900 font-semibold text-white shadow-xs' : 'hover:text-blue-900'
           }`}
         >
@@ -148,12 +162,20 @@ export const Header: React.FC<HeaderProps> = ({
         </button>
         <button
           onClick={() => setActiveTab('talent')}
-          className={`px-2.5 py-1 rounded transition-colors ${
+          className={`px-2 py-1 rounded transition-colors ${
             activeTab === 'talent' ? 'bg-blue-900 font-semibold text-white shadow-xs' : 'hover:text-blue-900'
           }`}
         >
           人才庫
         </button>
+        {onOpenStatutes && (
+          <button
+            onClick={onOpenStatutes}
+            className="px-2 py-1 rounded text-blue-900 font-semibold bg-blue-100/70 border border-blue-200"
+          >
+            法規全文
+          </button>
+        )}
         <button
           onClick={onOpenTriage}
           className="px-2 py-1 rounded text-blue-700 font-semibold bg-blue-50 border border-blue-200"

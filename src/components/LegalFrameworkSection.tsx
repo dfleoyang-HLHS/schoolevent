@@ -1,12 +1,34 @@
 import React, { useState } from 'react';
 import { CORE_LAWS, REFORM_COMPARISONS, LawArticle } from '../data/lawsData';
-import { Search, ChevronDown, ChevronUp, Copy, Check, Scale, ShieldAlert, Sparkles, BookOpen, AlertCircle } from 'lucide-react';
+import { OFFICIAL_STATUTES_LIST } from '../data/statutesFullData';
+import { StatuteReaderModal } from './StatuteReaderModal';
+import {
+  Search,
+  ChevronDown,
+  ChevronUp,
+  Copy,
+  Check,
+  Scale,
+  ShieldAlert,
+  Sparkles,
+  BookOpen,
+  AlertCircle,
+  ExternalLink,
+  FileText,
+  Printer,
+  Maximize2
+} from 'lucide-react';
 
 export const LegalFrameworkSection: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('全部');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [expandedLawId, setExpandedLawId] = useState<string | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  // Statute Reader Modal State
+  const [isStatuteModalOpen, setIsStatuteModalOpen] = useState<boolean>(false);
+  const [modalStatuteId, setModalStatuteId] = useState<string>('statute-dismissal');
+  const [modalArticleFilter, setModalArticleFilter] = useState<string>('');
 
   const categories = ['全部', '教師法', '解聘辦法', '考核辦法', '救濟與補助'];
 
@@ -28,25 +50,76 @@ export const LegalFrameworkSection: React.FC = () => {
     setTimeout(() => setCopiedId(null), 2000);
   };
 
+  const handleOpenStatuteModal = (statuteId: string, articleFilter = '') => {
+    setModalStatuteId(statuteId);
+    setModalArticleFilter(articleFilter);
+    setIsStatuteModalOpen(true);
+  };
+
+  const getStatuteMeta = (category: string) => {
+    switch (category) {
+      case '教師法':
+        return {
+          id: 'statute-teacher-act',
+          moeUrl: 'https://edu.law.moe.gov.tw/LawContent.aspx?id=FL008588',
+          name: '中華民國教師法'
+        };
+      case '考核辦法':
+        return {
+          id: 'statute-assessment',
+          moeUrl: 'https://edu.law.moe.gov.tw/LawContent.aspx?id=FL008770',
+          name: '公立高級中等以下學校教師成績考核辦法'
+        };
+      case '救濟與補助':
+        return {
+          id: 'statute-legal-subsidy',
+          moeUrl: 'https://edu.law.moe.gov.tw/LawContent.aspx?id=GL002347',
+          name: '國教署補助教師法律諮詢作業要點'
+        };
+      case '解聘辦法':
+      default:
+        return {
+          id: 'statute-dismissal',
+          moeUrl: 'https://edu.law.moe.gov.tw/LawContent.aspx?id=FL008593',
+          name: '高級中等以下學校教師解聘不續聘停聘或資遣辦法'
+        };
+    }
+  };
+
   return (
     <section className="space-y-12">
       {/* Editorial Chapter Header */}
       <div className="border-b border-slate-200 pb-8">
-        <div className="flex items-center gap-2 text-xs font-serif-tc tracking-widest text-slate-500 mb-2">
+        <div className="flex items-center gap-2 text-xs font-serif-tc tracking-widest text-blue-700 font-medium mb-2">
           <span>CHAPTER 01</span>
           <span aria-hidden="true">·</span>
           <span>LEGAL FRAMEWORK & REFORM</span>
           <span aria-hidden="true">·</span>
           <span>民國 115 年最新體系</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-serif-tc font-bold text-slate-900 tracking-tight">
-          法規引用頁：母法源頭與新制變革總覽
-        </h1>
-        <p className="mt-3 text-base text-slate-600 max-w-3xl leading-relaxed">
-          全面梳理現行最新《教師法》、民國 115 年 10 月修正之《高級中等以下學校教師解聘不續聘停聘或資遣辦法》、
-          《公立高級中等以下學校教師成績考核辦法》第 6 條之一，以及教育部國教署 115 年 10 月 14 日最新訂定之
-          「教師法律諮詢作業要點」。以白話拆解法理，指引行政操作與權益保障。
-        </p>
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h1 className="text-3xl sm:text-4xl font-serif-tc font-bold text-slate-900 tracking-tight">
+              法規引用頁：母法源頭與新制變革總覽
+            </h1>
+            <p className="mt-3 text-base text-slate-600 max-w-3xl leading-relaxed">
+              全面梳理現行最新《教師法》、民國 115 年 10 月修正之《高級中等以下學校教師解聘不續聘停聘或資遣辦法》、
+              《公立高級中等以下學校教師成績考核辦法》第 6 條之一，以及教育部國教署 115 年 10 月 14 日最新訂定之
+              「教師法律諮詢作業要點」。以白話拆解法理，指引行政操作與權益保障。
+            </p>
+          </div>
+
+          {/* Quick Trigger for Full Statute Reader Modal */}
+          <div className="shrink-0 flex items-center gap-2">
+            <button
+              onClick={() => handleOpenStatuteModal('statute-dismissal')}
+              className="flex items-center gap-2 px-4 py-2.5 bg-blue-900 hover:bg-blue-800 text-white rounded-lg text-xs font-semibold transition-all shadow-xs active:scale-95 cursor-pointer"
+            >
+              <BookOpen className="w-4 h-4 text-sky-300" />
+              <span>彈出法規全文檢閱視窗</span>
+            </button>
+          </div>
+        </div>
 
         {/* 115 年最新法規要點快報 (Calm Blue Slate Cards) */}
         <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-slate-200/80 text-xs text-slate-700">
@@ -80,8 +153,69 @@ export const LegalFrameworkSection: React.FC = () => {
         </div>
       </div>
 
+      {/* 四大核心母法：全文文字視窗檢閱與教育部官方 PDF 直通卡片區 */}
+      <div className="space-y-4 pt-2">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h2 className="text-xl sm:text-2xl font-serif-tc font-bold text-slate-900 flex items-center gap-2">
+              <FileText className="w-5 h-5 text-blue-700" />
+              <span>四大核心法規：條文全文文字視窗與教育部官方 PDF 直通專區</span>
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 mt-1">
+              可直接點擊「文字視窗」在站內完整閱讀條文並列印/存為 PDF，或點擊「官方 PDF 連結」直達教育部共用系統下載官方檔案。
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {OFFICIAL_STATUTES_LIST.map((statute) => (
+            <div
+              key={statute.id}
+              className="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs hover:border-blue-300 hover:shadow-xs transition-all flex flex-col justify-between space-y-3"
+            >
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between text-xs font-mono text-blue-700">
+                  <span className="bg-blue-50 px-2 py-0.5 rounded border border-blue-200/70 font-semibold">
+                    {statute.category}
+                  </span>
+                  <span className="text-slate-400 text-[11px]">{statute.promulgationDate.split('修正')[0].trim()}</span>
+                </div>
+
+                <h3 className="text-sm font-serif-tc font-bold text-slate-900 leading-snug">
+                  {statute.name}
+                </h3>
+
+                <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">
+                  {statute.summary}
+                </p>
+              </div>
+
+              <div className="pt-2 border-t border-slate-100 flex flex-col gap-2">
+                <button
+                  onClick={() => handleOpenStatuteModal(statute.id)}
+                  className="w-full flex items-center justify-center gap-1.5 px-3 py-1.5 bg-blue-900 hover:bg-blue-800 text-white rounded-lg text-xs font-medium transition-colors shadow-2xs cursor-pointer active:scale-95"
+                >
+                  <Maximize2 className="w-3.5 h-3.5" />
+                  <span>開啟全文文字視窗</span>
+                </button>
+
+                <a
+                  href={statute.moeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full flex items-center justify-center gap-1 px-3 py-1 bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-900 rounded-lg text-xs font-medium transition-colors border border-slate-200"
+                >
+                  <span>教育部官方 PDF 頁面</span>
+                  <ExternalLink className="w-3 h-3 text-slate-400" />
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* 新舊制核心差異對照表 (Core Differences) */}
-      <div className="space-y-6">
+      <div className="space-y-6 pt-4">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-xl sm:text-2xl font-serif-tc font-bold text-slate-900">
@@ -131,7 +265,7 @@ export const LegalFrameworkSection: React.FC = () => {
       {/* 核心條文即時搜尋與白話文深度解讀 */}
       <div className="space-y-6 pt-6 border-t border-slate-200">
         <div>
-          <div className="flex items-center gap-2 text-xs font-mono text-slate-500 mb-1">
+          <div className="flex items-center gap-2 text-xs font-mono text-blue-700 font-semibold mb-1">
             <span>REAL-TIME SEARCH & STATUTE NAVIGATOR</span>
             <span aria-hidden="true">·</span>
             <span>行政法規即時檢索系統</span>
@@ -202,7 +336,7 @@ export const LegalFrameworkSection: React.FC = () => {
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap cursor-pointer ${
                   selectedCategory === cat
-                    ? 'bg-white text-blue-950 shadow-2xs font-bold'
+                    ? 'bg-blue-900 text-white shadow-2xs font-bold'
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
@@ -243,6 +377,7 @@ export const LegalFrameworkSection: React.FC = () => {
           ) : (
             filteredLaws.map((law) => {
               const isExpanded = expandedLawId === law.id;
+              const meta = getStatuteMeta(law.category);
               return (
                 <div
                   key={law.id}
@@ -255,7 +390,7 @@ export const LegalFrameworkSection: React.FC = () => {
                       <span aria-hidden="true">·</span>
                       <span className="text-slate-600">{law.category}</span>
                       <span aria-hidden="true">·</span>
-                      <span>{law.article}</span>
+                      <span className="font-bold text-blue-900">{law.article}</span>
                     </div>
 
                     <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
@@ -267,10 +402,35 @@ export const LegalFrameworkSection: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Title */}
-                  <h3 className="text-lg sm:text-xl font-serif-tc font-bold text-slate-900">
-                    {law.title}
-                  </h3>
+                  {/* Title & Quick Actions */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <h3 className="text-lg sm:text-xl font-serif-tc font-bold text-slate-900">
+                      {law.title}
+                    </h3>
+
+                    {/* Direct Text Window & PDF Button */}
+                    <div className="flex items-center gap-2 shrink-0">
+                      <button
+                        onClick={() => handleOpenStatuteModal(meta.id, law.article)}
+                        className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-900 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors cursor-pointer"
+                        title="在獨立文字視窗中檢閱本法規條文全文"
+                      >
+                        <BookOpen className="w-3.5 h-3.5 text-blue-700" />
+                        <span>彈出全文文字視窗</span>
+                      </button>
+
+                      <a
+                        href={meta.moeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-md transition-colors"
+                        title="開啟教育部主管法規共用系統下載官方 PDF"
+                      >
+                        <ExternalLink className="w-3 h-3 text-slate-500" />
+                        <span>教育部官方 PDF</span>
+                      </a>
+                    </div>
+                  </div>
 
                   {/* Vernacular (白話文解讀) */}
                   <div className="p-4 bg-slate-50 rounded-lg border border-slate-200/80 text-sm text-slate-800 leading-relaxed">
@@ -290,8 +450,8 @@ export const LegalFrameworkSection: React.FC = () => {
                     <p className="text-slate-700">{law.practicalTip}</p>
                   </div>
 
-                  {/* Expand Raw Statute button & panel */}
-                  <div className="pt-2">
+                  {/* Expand Raw Statute button & inline panel */}
+                  <div className="pt-2 flex flex-wrap items-center justify-between gap-2">
                     <button
                       onClick={() => setExpandedLawId(isExpanded ? null : law.id)}
                       className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 hover:text-blue-900 transition-colors cursor-pointer"
@@ -299,45 +459,60 @@ export const LegalFrameworkSection: React.FC = () => {
                       {isExpanded ? (
                         <>
                           <ChevronUp className="w-3.5 h-3.5" />
-                          <span>收合原始法條文本</span>
+                          <span>收合條文原文字卡</span>
                         </>
                       ) : (
                         <>
                           <ChevronDown className="w-3.5 h-3.5" />
-                          <span>展開查閱完整法條原文</span>
+                          <span>就地展開查閱條文原文字卡</span>
                         </>
                       )}
                     </button>
 
-                    {isExpanded && (
-                      <div className="mt-3 p-4 bg-slate-900 text-slate-100 rounded-lg text-xs leading-relaxed font-mono whitespace-pre-wrap relative overflow-x-auto">
-                        <button
-                          onClick={() => handleCopyText(law.id, law.rawText)}
-                          className="absolute right-3 top-3 px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded flex items-center gap-1 text-[11px] transition-colors cursor-pointer"
-                          title="複製法條原文"
-                        >
-                          {copiedId === law.id ? (
-                            <>
-                              <Check className="w-3 h-3 text-emerald-400" />
-                              <span>已複製</span>
-                            </>
-                          ) : (
-                            <>
-                              <Copy className="w-3 h-3" />
-                              <span>複製法條</span>
-                            </>
-                          )}
-                        </button>
-                        {law.rawText}
-                      </div>
-                    )}
+                    <button
+                      onClick={() => handleOpenStatuteModal(meta.id, law.article)}
+                      className="text-xs text-blue-700 hover:text-blue-950 hover:underline flex items-center gap-1 cursor-pointer font-medium"
+                    >
+                      <span>在文字視窗中查閱《{meta.name}》完整所有條文 ➔</span>
+                    </button>
                   </div>
+
+                  {isExpanded && (
+                    <div className="mt-2 p-4 bg-slate-900 text-slate-100 rounded-lg text-xs leading-relaxed font-mono whitespace-pre-wrap relative overflow-x-auto border border-slate-800">
+                      <button
+                        onClick={() => handleCopyText(law.id, law.rawText)}
+                        className="absolute right-3 top-3 px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded flex items-center gap-1 text-[11px] transition-colors cursor-pointer"
+                        title="複製法條原文"
+                      >
+                        {copiedId === law.id ? (
+                          <>
+                            <Check className="w-3 h-3 text-sky-300" />
+                            <span>已複製</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="w-3 h-3" />
+                            <span>複製法條</span>
+                          </>
+                        )}
+                      </button>
+                      {law.rawText}
+                    </div>
+                  )}
                 </div>
               );
             })
           )}
         </div>
       </div>
+
+      {/* Full Statute Reader Modal */}
+      <StatuteReaderModal
+        isOpen={isStatuteModalOpen}
+        onClose={() => setIsStatuteModalOpen(false)}
+        initialStatuteId={modalStatuteId}
+        initialArticleNo={modalArticleFilter}
+      />
     </section>
   );
 };

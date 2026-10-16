@@ -7,12 +7,14 @@ import { FaqSection } from './components/FaqSection';
 import { TalentPoolSection } from './components/TalentPoolSection';
 import { MarkdownExportModal } from './components/MarkdownExportModal';
 import { TriageWizardModal } from './components/TriageWizardModal';
+import { StatuteReaderModal } from './components/StatuteReaderModal';
 import { Scale, BookOpen, Users, Compass, HelpCircle, FileText, ExternalLink, ShieldCheck, GraduationCap, ArrowRight } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>('legal');
   const [isExportOpen, setIsExportOpen] = useState<boolean>(false);
   const [isTriageOpen, setIsTriageOpen] = useState<boolean>(false);
+  const [isStatuteReaderOpen, setIsStatuteReaderOpen] = useState<boolean>(false);
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col selection:bg-blue-900 selection:text-white">
@@ -22,6 +24,7 @@ export default function App() {
         setActiveTab={setActiveTab}
         onOpenExport={() => setIsExportOpen(true)}
         onOpenTriage={() => setIsTriageOpen(true)}
+        onOpenStatutes={() => setIsStatuteReaderOpen(true)}
       />
 
       {/* Hero Marquee Section - Refined Calm Navy Blue Theme */}
@@ -56,6 +59,14 @@ export default function App() {
             >
               <Compass className="w-4 h-4 text-white" />
               <span>啟動初篩與分流診斷器</span>
+            </button>
+
+            <button
+              onClick={() => setIsStatuteReaderOpen(true)}
+              className="flex items-center gap-2 px-4 py-2.5 bg-blue-900/90 hover:bg-blue-800 text-sky-200 rounded-lg text-xs font-semibold transition-all border border-blue-700/80 active:scale-95 cursor-pointer hover:border-sky-400"
+            >
+              <BookOpen className="w-4 h-4 text-sky-300" />
+              <span>查閱法條全文文字視窗 & 官方 PDF</span>
             </button>
 
             <button
@@ -121,7 +132,7 @@ export default function App() {
       </main>
 
       {/* Institutional Footer */}
-      <footer className="mt-20 border-t border-slate-200 bg-white py-12 text-xs text-slate-600">
+      <footer className="mt-20 border-t border-slate-200 bg-white py-12 text-xs text-slate-600 print:hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-100">
             <div className="space-y-1">
@@ -139,7 +150,7 @@ export default function App() {
                   setActiveTab('legal');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="hover:text-blue-900 transition-colors"
+                className="hover:text-blue-900 transition-colors cursor-pointer"
               >
                 法規體系
               </button>
@@ -148,7 +159,7 @@ export default function App() {
                   setActiveTab('org');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="hover:text-blue-900 transition-colors"
+                className="hover:text-blue-900 transition-colors cursor-pointer"
               >
                 組織法定
               </button>
@@ -157,7 +168,7 @@ export default function App() {
                   setActiveTab('flow');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="hover:text-blue-900 transition-colors"
+                className="hover:text-blue-900 transition-colors cursor-pointer"
               >
                 SOP流程
               </button>
@@ -166,7 +177,7 @@ export default function App() {
                   setActiveTab('faq');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="hover:text-blue-900 transition-colors"
+                className="hover:text-blue-900 transition-colors cursor-pointer"
               >
                 實務問答
               </button>
@@ -175,9 +186,15 @@ export default function App() {
                   setActiveTab('talent');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="hover:text-blue-900 transition-colors"
+                className="hover:text-blue-900 transition-colors cursor-pointer"
               >
                 校園人才庫
+              </button>
+              <button
+                onClick={() => setIsStatuteReaderOpen(true)}
+                className="text-blue-700 font-semibold hover:underline cursor-pointer"
+              >
+                法規全文視窗 & PDF
               </button>
             </div>
           </div>
@@ -193,7 +210,7 @@ export default function App() {
                 rel="noopener noreferrer"
                 className="hover:text-blue-700 flex items-center gap-1 transition-colors"
               >
-                <span>教育部主管法規共用系統</span>
+                <span>教育部主管法規共用系統官方網頁</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
             </div>
@@ -209,6 +226,10 @@ export default function App() {
       <TriageWizardModal
         isOpen={isTriageOpen}
         onClose={() => setIsTriageOpen(false)}
+      />
+      <StatuteReaderModal
+        isOpen={isStatuteReaderOpen}
+        onClose={() => setIsStatuteReaderOpen(false)}
       />
     </div>
   );
