@@ -34,13 +34,44 @@ export const LegalFrameworkSection: React.FC = () => {
 
   const filteredLaws = CORE_LAWS.filter((law) => {
     const matchesCategory = selectedCategory === '全部' || law.category === selectedCategory;
+    const query = searchQuery.trim().toLowerCase();
+    const queryNoSpace = query.replace(/\s+/g, '');
+
+    if (!query) {
+      return matchesCategory;
+    }
+
+    const titleLower = law.title.toLowerCase();
+    const titleNoSpace = titleLower.replace(/\s+/g, '');
+    const articleLower = law.article.toLowerCase();
+    const articleNoSpace = articleLower.replace(/\s+/g, '');
+    const sourceLower = law.source.toLowerCase();
+    const sourceNoSpace = sourceLower.replace(/\s+/g, '');
+    const rawLower = law.rawText.toLowerCase();
+    const vernacularLower = law.vernacular.toLowerCase();
+    const tipLower = law.practicalTip.toLowerCase();
+
     const matchesSearch =
-      searchQuery.trim() === '' ||
-      law.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      law.article.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      law.rawText.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      law.vernacular.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      law.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+      titleLower.includes(query) ||
+      titleNoSpace.includes(queryNoSpace) ||
+      articleLower.includes(query) ||
+      articleNoSpace.includes(queryNoSpace) ||
+      sourceLower.includes(query) ||
+      sourceNoSpace.includes(queryNoSpace) ||
+      rawLower.includes(query) ||
+      vernacularLower.includes(query) ||
+      tipLower.includes(query) ||
+      law.tags.some((tag) => {
+        const tagLower = tag.toLowerCase();
+        const tagNoSpace = tagLower.replace(/\s+/g, '');
+        return (
+          tagLower.includes(query) ||
+          tagNoSpace.includes(queryNoSpace) ||
+          query.includes(tagLower) ||
+          queryNoSpace.includes(tagNoSpace)
+        );
+      });
+
     return matchesCategory && matchesSearch;
   });
 
@@ -61,7 +92,7 @@ export const LegalFrameworkSection: React.FC = () => {
       case '教師法':
         return {
           id: 'statute-teacher-act',
-          moeUrl: 'https://edu.law.moe.gov.tw/LawContent.aspx?id=FL008588',
+          moeUrl: 'https://edu.law.moe.gov.tw/LawContent.aspx?id=FL008447&kw=%e6%95%99%e5%b8%ab%e6%b3%95',
           name: '中華民國教師法'
         };
       case '考核辦法':
@@ -80,7 +111,7 @@ export const LegalFrameworkSection: React.FC = () => {
       default:
         return {
           id: 'statute-dismissal',
-          moeUrl: 'https://edu.law.moe.gov.tw/LawContent.aspx?id=FL008593',
+          moeUrl: 'https://edu.law.moe.gov.tw/LawContent.aspx?id=GL001995&kw=%e9%ab%98%e7%b4%9a%e4%b8%ad%e7%ad%89%e4%bb%a5%e4%b8%8b%e5%ad%b8%e6%a0%a1%e6%95%99%e5%b8%ab%e8%a7%a3%e8%81%98%e4%b8%8d%e7%ba%8c%e8%81%98%e5%81%9c%e8%81%98%e6%88%96%e8%b3%87%e9%81%a3%e8%be%a6%e6%b3%95',
           name: '高級中等以下學校教師解聘不續聘停聘或資遣辦法'
         };
     }
@@ -286,7 +317,7 @@ export const LegalFrameworkSection: React.FC = () => {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="輸入關鍵字即時檢索（如：阻卻違法、考核分流、全外聘、3萬元、第14條、第8條、教學不力...）"
+              placeholder="輸入關鍵字即時檢索（如：阻卻違法、考核分流、終身解聘、直接結案、教學不力、終局停聘、全外聘人才庫、3萬元...）"
               className="w-full text-sm sm:text-base text-slate-900 placeholder:text-slate-400 bg-transparent focus:outline-none"
             />
             {searchQuery && (
@@ -299,25 +330,30 @@ export const LegalFrameworkSection: React.FC = () => {
             )}
           </div>
 
-          {/* Quick-Search Hot Keyword Presets */}
+          {/* Quick-Search Hot Keyword Presets (已刪除第○條前綴，只保留實質關鍵字) */}
           <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-100 text-xs text-slate-500">
             <span className="font-medium text-slate-700 shrink-0">常見行政熱搜詞：</span>
             {[
               '阻卻違法',
               '考核分流',
+              '終身解聘',
+              '直接結案',
+              '教學不力',
+              '終局停聘',
               '全外聘人才庫',
               '法律諮詢補助',
-              '第14條終身解聘',
-              '第8條直接結案',
-              '第16條教學不力',
-              '第18條終局停聘',
+              '正當防衛',
+              '匿名檢舉',
             ].map((kw) => (
               <button
                 key={kw}
-                onClick={() => setSearchQuery(kw)}
+                onClick={() => {
+                  setSearchQuery(kw);
+                  setSelectedCategory('全部');
+                }}
                 className={`px-2.5 py-0.5 rounded transition-colors cursor-pointer ${
                   searchQuery === kw
-                    ? 'bg-blue-900 text-white font-medium'
+                    ? 'bg-blue-900 text-white font-medium shadow-2xs'
                     : 'bg-slate-100 text-slate-700 hover:bg-blue-50 hover:text-blue-900'
                 }`}
               >
@@ -353,7 +389,8 @@ export const LegalFrameworkSection: React.FC = () => {
             筆相符法規條文
             {searchQuery && (
               <span className="text-slate-500 ml-1">
-                （含關鍵字「<span className="text-blue-950 font-medium">{searchQuery}</span>」）
+                （含關鍵字「<span className="text-blue-950 font-medium">{searchQuery}</span>」
+                {selectedCategory !== '全部' && ` · 已套用「${selectedCategory}」分類`}）
               </span>
             )}
           </div>
@@ -363,16 +400,32 @@ export const LegalFrameworkSection: React.FC = () => {
         <div className="space-y-6">
           {filteredLaws.length === 0 ? (
             <div className="text-center py-12 border border-dashed border-slate-300 rounded-xl bg-white text-slate-600 text-sm space-y-3">
-              <div>查無符合「<span className="font-semibold text-slate-900">{searchQuery}</span>」之法規條文。</div>
-              <button
-                onClick={() => {
-                  setSearchQuery('');
-                  setSelectedCategory('全部');
-                }}
-                className="text-xs px-3.5 py-1.5 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition-colors shadow-2xs cursor-pointer"
-              >
-                清除關鍵字並重置分類
-              </button>
+              <div>
+                查無符合「<span className="font-semibold text-slate-900">{searchQuery}</span>」
+                {selectedCategory !== '全部' && (
+                  <span>（於「<span className="text-blue-900 font-medium">{selectedCategory}</span>」分類中）</span>
+                )}
+                之法規條文。
+              </div>
+              <div className="flex items-center justify-center gap-2">
+                {selectedCategory !== '全部' && (
+                  <button
+                    onClick={() => setSelectedCategory('全部')}
+                    className="text-xs px-3.5 py-1.5 bg-blue-50 text-blue-900 border border-blue-200 rounded-lg hover:bg-blue-100 transition-colors font-medium cursor-pointer"
+                  >
+                    在「全部法規」中搜尋
+                  </button>
+                )}
+                <button
+                  onClick={() => {
+                    setSearchQuery('');
+                    setSelectedCategory('全部');
+                  }}
+                  className="text-xs px-3.5 py-1.5 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition-colors shadow-2xs cursor-pointer"
+                >
+                  清除關鍵字並重置分類
+                </button>
+              </div>
             </div>
           ) : (
             filteredLaws.map((law) => {
@@ -395,9 +448,17 @@ export const LegalFrameworkSection: React.FC = () => {
 
                     <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
                       {law.tags.map((tag, idx) => (
-                        <span key={idx} className="text-slate-600 hover:text-blue-800 cursor-pointer">
+                        <button
+                          key={idx}
+                          onClick={() => {
+                            setSearchQuery(tag);
+                            setSelectedCategory('全部');
+                          }}
+                          className="text-slate-600 hover:text-blue-900 hover:bg-blue-50 px-1.5 py-0.5 rounded transition-colors cursor-pointer"
+                          title={`點擊依 #${tag} 篩選`}
+                        >
                           #{tag}
-                        </span>
+                        </button>
                       ))}
                     </div>
                   </div>
