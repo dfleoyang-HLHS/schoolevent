@@ -1,0 +1,6 @@
+{
+  "name": "校事會議線上領航站",
+  "description": "高級中等以下學校校園事件處理權威指引與法規流程線上導航平台",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
