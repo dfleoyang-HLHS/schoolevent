@@ -4,9 +4,10 @@ import { LegalFrameworkSection } from './components/LegalFrameworkSection';
 import { OrganizationSection } from './components/OrganizationSection';
 import { FlowchartSection } from './components/FlowchartSection';
 import { FaqSection } from './components/FaqSection';
+import { TalentPoolSection } from './components/TalentPoolSection';
 import { MarkdownExportModal } from './components/MarkdownExportModal';
 import { TriageWizardModal } from './components/TriageWizardModal';
-import { Scale, BookOpen, Users, Compass, HelpCircle, FileText, ExternalLink, ShieldCheck } from 'lucide-react';
+import { Scale, BookOpen, Users, Compass, HelpCircle, FileText, ExternalLink, ShieldCheck, GraduationCap } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>('legal');
@@ -47,7 +48,7 @@ export default function App() {
           <div className="flex flex-wrap items-center gap-3 pt-2">
             <button
               onClick={() => setIsTriageOpen(true)}
-              className="flex items-center gap-2 px-4 py-2.5 bg-white text-stone-900 hover:bg-stone-100 rounded-lg text-xs font-semibold transition-all shadow-xs active:scale-95"
+              className="flex items-center gap-2 px-4 py-2.5 bg-white text-stone-900 hover:bg-stone-100 rounded-lg text-xs font-semibold transition-all shadow-xs active:scale-95 cursor-pointer"
             >
               <Compass className="w-4 h-4 text-stone-800" />
               <span>啟動初篩與分流診斷器</span>
@@ -55,18 +56,29 @@ export default function App() {
 
             <button
               onClick={() => {
+                setActiveTab('talent');
+                window.scrollTo({ top: 350, behavior: 'smooth' });
+              }}
+              className="flex items-center gap-2 px-4 py-2.5 bg-stone-800 hover:bg-stone-700 text-amber-300 rounded-lg text-xs font-medium transition-all border border-stone-700 active:scale-95 cursor-pointer"
+            >
+              <GraduationCap className="w-4 h-4 text-amber-400" />
+              <span>查詢教育部校園人才庫</span>
+            </button>
+
+            <button
+              onClick={() => {
                 setActiveTab('flow');
                 window.scrollTo({ top: 350, behavior: 'smooth' });
               }}
-              className="flex items-center gap-2 px-4 py-2.5 bg-stone-800 hover:bg-stone-700 text-stone-200 rounded-lg text-xs font-medium transition-all border border-stone-700 active:scale-95"
+              className="flex items-center gap-2 px-4 py-2.5 bg-stone-800 hover:bg-stone-700 text-stone-200 rounded-lg text-xs font-medium transition-all border border-stone-700 active:scale-95 cursor-pointer"
             >
-              <Scale className="w-4 h-4 text-amber-400" />
+              <Scale className="w-4 h-4 text-stone-300" />
               <span>檢閱 5 階段法定 SOP 流程</span>
             </button>
 
             <button
               onClick={() => setIsExportOpen(true)}
-              className="flex items-center gap-2 px-4 py-2.5 bg-stone-800 hover:bg-stone-700 text-stone-200 rounded-lg text-xs font-medium transition-all border border-stone-700 active:scale-95"
+              className="flex items-center gap-2 px-4 py-2.5 bg-stone-800 hover:bg-stone-700 text-stone-200 rounded-lg text-xs font-medium transition-all border border-stone-700 active:scale-95 cursor-pointer"
             >
               <FileText className="w-4 h-4 text-stone-400" />
               <span>匯出全站 Markdown 文本</span>
@@ -101,6 +113,7 @@ export default function App() {
         {activeTab === 'org' && <OrganizationSection />}
         {activeTab === 'flow' && <FlowchartSection />}
         {activeTab === 'faq' && <FaqSection />}
+        {activeTab === 'talent' && <TalentPoolSection />}
       </main>
 
       {/* Institutional Footer */}

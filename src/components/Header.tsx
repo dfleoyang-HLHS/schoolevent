@@ -79,6 +79,16 @@ export const Header: React.FC<HeaderProps> = ({
               常見問答 FAQ
             </button>
             <button
+              onClick={() => setActiveTab('talent')}
+              className={`whitespace-nowrap shrink-0 transition-colors py-1 border-b-2 text-sm ${
+                activeTab === 'talent'
+                  ? 'border-stone-900 text-stone-900 font-semibold'
+                  : 'border-transparent hover:text-stone-900'
+              }`}
+            >
+              校園人才庫
+            </button>
+            <button
               onClick={onOpenTriage}
               className="flex items-center gap-1.5 text-stone-700 hover:text-stone-950 transition-colors whitespace-nowrap shrink-0 py-1"
             >
@@ -125,6 +135,12 @@ export const Header: React.FC<HeaderProps> = ({
           className={`px-2.5 py-1 rounded ${activeTab === 'faq' ? 'bg-white font-semibold text-stone-900 shadow-xs' : ''}`}
         >
           實務QA
+        </button>
+        <button
+          onClick={() => setActiveTab('talent')}
+          className={`px-2.5 py-1 rounded ${activeTab === 'talent' ? 'bg-white font-semibold text-stone-900 shadow-xs' : ''}`}
+        >
+          校園人才庫
         </button>
       </div>
     </header>
