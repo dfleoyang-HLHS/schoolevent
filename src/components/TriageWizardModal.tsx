@@ -236,18 +236,33 @@ export const TriageWizardModal: React.FC<TriageWizardModalProps> = ({ isOpen, on
           {step === 100 && (
             <div className="p-5 bg-slate-50 rounded-xl border border-slate-300 space-y-4">
               <div className="flex items-center gap-2 text-slate-900 font-bold text-base font-serif-tc">
-                <AlertOctagon className="w-5 h-5 text-slate-700" />
-                <span>診斷結果：【應不予受理】（存查結案）</span>
+                <AlertOctagon className="w-5 h-5 text-blue-700" />
+                <span>診斷結果：【應不予受理】（程序審查存查，實體不調查結案）</span>
               </div>
-              <div className="text-xs text-slate-700 leading-relaxed space-y-2">
+
+              {/* Core Principle Callout */}
+              <div className="p-3 bg-blue-50/80 rounded-lg border border-blue-200 text-xs text-blue-950 font-medium leading-relaxed">
+                ⚖️ <strong>處理原則：「程序要處理，實體不調查」</strong>
+                <br />
+                學校切勿直接私下將黑函丟棄，而必須依法完成「形式審查法定程序」，經會議決議「不予受理」並簽准存查，以杜絕後續法律爭議並給予被攻擊教師最大保障。
+              </div>
+
+              <div className="text-xs text-slate-700 leading-relaxed space-y-2.5">
                 <p>
-                  <strong>法規依據：</strong>《解聘辦法》第 9 條第 1 項第 3 款。
+                  <strong>1. 法規依據：</strong>《解聘辦法》第 9 條第 1 項第 3 款。
                 </p>
                 <p>
-                  <strong>法定程序：</strong>由校長邀集外聘人才庫學者專家 1 人、教師代表 1 人、家長代表 1 人召開審查會議（校長僅陳述意見無表決權），經無記名投票過半數通過後作成「不予受理」決定。
+                  <strong>2. 法定行政程序（必須召開審查會）：</strong>
+                  <br />由校長邀集「外聘調查人才庫學者專家 1 人」、「校事會議教師代表 1 人」、「家長代表 1 人」召開 4 人審查會議。
+                  <br /><span className="text-blue-900 font-semibold">注意：校長僅得陳述意見，完全無表決權！</span>由外聘專家、教師代表、家長代表以<strong>無記名投票過半數通過</strong>作成「應不予受理」之法定處置。
                 </p>
                 <p>
-                  <strong>後續作為：</strong>學校應於接獲檢舉之日起 20 日內以書面敘明理由通知檢舉人（若無聯絡資訊則行政存查備查），毋須召開校事會議或外聘調查小組。
+                  <strong>3. 實質作為（不啟動調查，保障教師）：</strong>
+                  <br />決議作成後，<strong>絕對不啟動校事會議、不籌組外聘調查小組、不對被攻擊教師立案調查</strong>，切勿隨黑函起舞動輒要求教師寫報告或停課。
+                </p>
+                <p>
+                  <strong>4. 後續結案與公文歸檔：</strong>
+                  <br />學校應於接獲檢舉之日起 <strong>20 日內</strong>完成上述程序。若檢舉留有假地址或可聯絡之管道，以書面敘明「未具真實姓名依法不予受理」理由函復；若完全無法聯絡，則將審查會議紀錄本於職權簽請校長<strong>「行政存查（歸檔備查）」</strong>，全案正式合法結案。
                 </p>
               </div>
             </div>
