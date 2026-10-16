@@ -128,53 +128,117 @@ export const LegalFrameworkSection: React.FC = () => {
         </div>
       </div>
 
-      {/* 核心條文查詢與白話文深度解讀 */}
+      {/* 核心條文即時搜尋與白話文深度解讀 */}
       <div className="space-y-6 pt-6 border-t border-stone-200">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <h2 className="text-xl sm:text-2xl font-serif-tc font-bold text-stone-900">
-              關鍵法條白話解讀與實務要訣
-            </h2>
-            <p className="text-sm text-stone-600 mt-1">
-              將艱澀之法律文字轉化為清晰行政判準與教師權利說明，附條文原文即時檢閱。
-            </p>
+        <div>
+          <div className="flex items-center gap-2 text-xs font-mono text-stone-500 mb-1">
+            <span>REAL-TIME SEARCH & STATUTE NAVIGATOR</span>
+            <span aria-hidden="true">·</span>
+            <span>行政法規即時檢索系統</span>
           </div>
+          <h2 className="text-xl sm:text-2xl font-serif-tc font-bold text-stone-900">
+            教育部法規即時檢索與實務要訣
+          </h2>
+          <p className="text-sm text-stone-600 mt-1">
+            支援條文案號、白話解讀、實務指引、標籤或原始法條全文即時模糊比對，專為第一線學校行政人員快速檢索設計。
+          </p>
+        </div>
 
-          {/* Search box */}
-          <div className="relative w-full sm:w-72">
-            <Search className="w-4 h-4 text-stone-400 absolute left-3 top-1/2 -translate-y-1/2" />
+        {/* 專用高效率搜尋列 (Dedicated High-Efficiency Search Input Box) */}
+        <div className="bg-white border-2 border-stone-300 focus-within:border-stone-900 rounded-xl p-2 sm:p-3 shadow-xs transition-all space-y-3">
+          <div className="flex items-center gap-3">
+            <Search className="w-5 h-5 text-stone-500 shrink-0 ml-1" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="搜尋法條關鍵字 (如: 阻卻違法、分流)..."
-              className="w-full pl-9 pr-4 py-2 text-xs bg-white border border-stone-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-stone-800 focus:border-stone-800 transition-colors"
+              placeholder="輸入關鍵字即時檢索（如：阻卻違法、考核分流、全外聘、3萬元、第14條、第8條、教學不力...）"
+              className="w-full text-sm sm:text-base text-stone-900 placeholder:text-stone-400 bg-transparent focus:outline-none"
             />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="text-xs px-2.5 py-1 bg-stone-100 hover:bg-stone-200 text-stone-600 rounded-md transition-colors shrink-0 font-medium"
+              >
+                清除
+              </button>
+            )}
+          </div>
+
+          {/* Quick-Search Hot Keyword Presets */}
+          <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-stone-100 text-xs text-stone-500">
+            <span className="font-medium text-stone-700 shrink-0">常見行政熱搜詞：</span>
+            {[
+              '阻卻違法',
+              '考核分流',
+              '全外聘人才庫',
+              '法律諮詢補助',
+              '第14條終身解聘',
+              '第8條直接結案',
+              '第16條教學不力',
+              '第18條終局停聘',
+            ].map((kw) => (
+              <button
+                key={kw}
+                onClick={() => setSearchQuery(kw)}
+                className={`px-2 py-0.5 rounded transition-colors ${
+                  searchQuery === kw
+                    ? 'bg-stone-900 text-white font-medium'
+                    : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
+                }`}
+              >
+                {kw}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Category Filter bar */}
-        <div className="flex flex-wrap items-center gap-1.5 p-1 bg-stone-100 rounded-lg w-fit border border-stone-200">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
-                selectedCategory === cat
-                  ? 'bg-white text-stone-900 shadow-2xs font-semibold'
-                  : 'text-stone-600 hover:text-stone-900'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+        {/* Category Filter and Search Result Status */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="flex flex-wrap items-center gap-1.5 p-1 bg-stone-100 rounded-lg w-fit border border-stone-200">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+                  selectedCategory === cat
+                    ? 'bg-white text-stone-900 shadow-2xs font-semibold'
+                    : 'text-stone-600 hover:text-stone-900'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
+          <div className="text-xs text-stone-600 font-mono">
+            檢索結果：
+            <span className="font-bold text-stone-900 px-1 font-mono text-sm">
+              {filteredLaws.length}
+            </span>
+            筆相符法規條文
+            {searchQuery && (
+              <span className="text-stone-500 ml-1">
+                （含關鍵字「<span className="text-stone-900 font-medium">{searchQuery}</span>」）
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Laws List */}
         <div className="space-y-6">
           {filteredLaws.length === 0 ? (
-            <div className="text-center py-12 border border-dashed border-stone-300 rounded-xl bg-white text-stone-500 text-sm">
-              無符合條件之法規條文，請嘗試更換搜尋條件或分類。
+            <div className="text-center py-12 border border-dashed border-stone-300 rounded-xl bg-white text-stone-600 text-sm space-y-3">
+              <div>查無符合「<span className="font-semibold text-stone-900">{searchQuery}</span>」之法規條文。</div>
+              <button
+                onClick={() => {
+                  setSearchQuery('');
+                  setSelectedCategory('全部');
+                }}
+                className="text-xs px-3.5 py-1.5 bg-stone-900 text-stone-50 rounded-lg hover:bg-stone-800 transition-colors shadow-2xs"
+              >
+                清除關鍵字並重置分類
+              </button>
             </div>
           ) : (
             filteredLaws.map((law) => {
