@@ -9,7 +9,6 @@ interface TriageWizardModalProps {
 export const TriageWizardModal: React.FC<TriageWizardModalProps> = ({ isOpen, onClose }) => {
   const [step, setStep] = useState<number>(1);
   const [isAnonymous, setIsAnonymous] = useState<boolean | null>(null);
-  const [hasConcreteMajorCrime, setHasConcreteMajorCrime] = useState<boolean | null>(null);
   const [isSelfDefenseOrJustified, setIsSelfDefenseOrJustified] = useState<boolean | null>(null);
   const [reachesDismissalSeverity, setReachesDismissalSeverity] = useState<boolean | null>(null);
 
@@ -18,7 +17,6 @@ export const TriageWizardModal: React.FC<TriageWizardModalProps> = ({ isOpen, on
   const handleReset = () => {
     setStep(1);
     setIsAnonymous(null);
-    setHasConcreteMajorCrime(null);
     setIsSelfDefenseOrJustified(null);
     setReachesDismissalSeverity(null);
   };
@@ -78,7 +76,7 @@ export const TriageWizardModal: React.FC<TriageWizardModalProps> = ({ isOpen, on
                 <button
                   onClick={() => {
                     setIsAnonymous(true);
-                    setStep(15); // Sub-step for anonymous exception
+                    setStep(100); // 匿名檢舉依第9條第1項第3款直接法定不予受理
                   }}
                   className="p-4 border border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50/40 text-left transition-all group cursor-pointer shadow-2xs"
                 >
@@ -86,54 +84,7 @@ export const TriageWizardModal: React.FC<TriageWizardModalProps> = ({ isOpen, on
                     B. 否，為匿名或未具真實姓名之檢舉
                   </div>
                   <div className="text-xs text-slate-500 mt-1">
-                    黑函、網路匿名爆料、未留真實身分。
-                  </div>
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* Step 1.5: 匿名黑函之重大事證檢核 (第9條第2項) */}
-          {step === 15 && (
-            <div className="space-y-4">
-              <div className="text-xs font-mono text-blue-800 font-semibold">
-                EXCEPTION · 匿名案件之實質事證檢驗（解§9Ⅱ）
-              </div>
-              <h3 className="text-base font-bold font-serif-tc text-slate-900">
-                該匿名檢舉是否檢附極具體證據，且客觀涉及《教師法》第 14 條、第 15 條重大解聘情事？
-              </h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                如涉及重大性侵、重傷或暴力體罰，並附有確切直接影音事證；若僅為空泛指控或臆測則選否。
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                <button
-                  onClick={() => {
-                    setHasConcreteMajorCrime(true);
-                    setStep(2);
-                  }}
-                  className="p-4 border border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50/40 text-left transition-all cursor-pointer shadow-2xs"
-                >
-                  <div className="font-semibold text-slate-900 hover:text-blue-900">
-                    是，事證極為確切且涉及重大解聘罪嫌
-                  </div>
-                  <div className="text-xs text-slate-500 mt-1">
-                    學校依第 9 條第 2 項得本於職權繼續調查處理。
-                  </div>
-                </button>
-
-                <button
-                  onClick={() => {
-                    setHasConcreteMajorCrime(false);
-                    setStep(100); // Result: 不受理
-                  }}
-                  className="p-4 border border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50/40 text-left transition-all cursor-pointer shadow-2xs"
-                >
-                  <div className="font-semibold text-slate-900 hover:text-blue-900">
-                    否，為空泛指控或未涉第14、15條重大罪嫌
-                  </div>
-                  <div className="text-xs text-slate-500 mt-1">
-                    依第 9 條第 1 項第 3 款應無記名表決不予受理。
+                    黑函、網路匿名爆料、未留真實身分 ➜ 依法定程序應不予受理。
                   </div>
                 </button>
               </div>
@@ -263,6 +214,10 @@ export const TriageWizardModal: React.FC<TriageWizardModalProps> = ({ isOpen, on
                 <p>
                   <strong>4. 後續結案與公文歸檔：</strong>
                   <br />學校應於接獲檢舉之日起 <strong>20 日內</strong>完成上述程序。若檢舉留有假地址或可聯絡之管道，以書面敘明「未具真實姓名依法不予受理」理由函復；若完全無法聯絡，則將審查會議紀錄本於職權簽請校長<strong>「行政存查（歸檔備查）」</strong>，全案正式合法結案。
+                </p>
+                <p className="p-2.5 bg-slate-100 rounded-lg border border-slate-200 text-[11px] text-slate-600">
+                  <span className="font-semibold text-blue-900">📌 法規精確辨析（重要觀念）：</span>
+                  《解聘辦法》第 9 條第 2 項明定得本於職權繼續調查者，法條明文限定僅適用於<strong>「前項第五款之撤回檢舉事件」</strong>（防範重大違法案件具名檢舉後遭私下施壓撤案）；對於<strong>「第三款未具真實姓名（匿名/黑函）」</strong>，法條並無得本於職權調查之例外，依法就是「應不予受理」！
                 </p>
               </div>
             </div>
