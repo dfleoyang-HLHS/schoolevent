@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, FileText, Compass, Download, ShieldCheck } from 'lucide-react';
+import { BookOpen, FileText, Compass, Download, ShieldCheck, GraduationCap, Scale, Users, HelpCircle } from 'lucide-react';
 
 interface HeaderProps {
   activeTab: string;
@@ -15,12 +15,12 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenTriage,
 }) => {
   return (
-    <header className="sticky top-0 z-40 bg-stone-50/95 backdrop-blur-md border-b border-stone-200">
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-8 h-16">
-          {/* Zone 1: Single text element Brand Zone */}
+        <div className="flex items-center justify-between gap-6 h-16">
+          {/* Zone 1: Brand Zone */}
           <div className="flex items-center gap-3 shrink-0">
-            <div className="w-9 h-9 rounded-lg bg-stone-900 text-stone-100 flex items-center justify-center font-serif-tc font-bold text-lg shadow-xs">
+            <div className="w-9 h-9 rounded-lg bg-blue-900 text-white flex items-center justify-center font-serif-tc font-bold text-base shadow-xs ring-1 ring-blue-950/20">
               領
             </div>
             <a
@@ -30,78 +30,80 @@ export const Header: React.FC<HeaderProps> = ({
                 setActiveTab('legal');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="text-lg font-bold tracking-tight text-stone-900 whitespace-nowrap hover:text-stone-700 transition-colors"
+              className="text-lg font-bold tracking-tight text-slate-900 whitespace-nowrap hover:text-blue-900 transition-colors"
             >
               校事會議線上領航站
             </a>
           </div>
 
-          {/* Zone 2: 4–5 single-line clean text navigation links */}
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-stone-600">
+          {/* Zone 2: Navigation Links */}
+          <nav className="hidden md:flex items-center gap-1 sm:gap-2 text-sm font-medium text-slate-600">
             <button
               onClick={() => setActiveTab('legal')}
-              className={`whitespace-nowrap shrink-0 transition-colors py-1 border-b-2 text-sm ${
+              className={`whitespace-nowrap shrink-0 transition-all px-3 py-1.5 rounded-md text-sm cursor-pointer ${
                 activeTab === 'legal'
-                  ? 'border-stone-900 text-stone-900 font-semibold'
-                  : 'border-transparent hover:text-stone-900'
+                  ? 'bg-blue-50 text-blue-900 font-semibold border border-blue-200/70 shadow-xs'
+                  : 'hover:text-blue-900 hover:bg-slate-100/70'
               }`}
             >
               法規引用
             </button>
             <button
               onClick={() => setActiveTab('org')}
-              className={`whitespace-nowrap shrink-0 transition-colors py-1 border-b-2 text-sm ${
+              className={`whitespace-nowrap shrink-0 transition-all px-3 py-1.5 rounded-md text-sm cursor-pointer ${
                 activeTab === 'org'
-                  ? 'border-stone-900 text-stone-900 font-semibold'
-                  : 'border-transparent hover:text-stone-900'
+                  ? 'bg-blue-50 text-blue-900 font-semibold border border-blue-200/70 shadow-xs'
+                  : 'hover:text-blue-900 hover:bg-slate-100/70'
               }`}
             >
               組織運作
             </button>
             <button
               onClick={() => setActiveTab('flow')}
-              className={`whitespace-nowrap shrink-0 transition-colors py-1 border-b-2 text-sm ${
+              className={`whitespace-nowrap shrink-0 transition-all px-3 py-1.5 rounded-md text-sm cursor-pointer ${
                 activeTab === 'flow'
-                  ? 'border-stone-900 text-stone-900 font-semibold'
-                  : 'border-transparent hover:text-stone-900'
+                  ? 'bg-blue-50 text-blue-900 font-semibold border border-blue-200/70 shadow-xs'
+                  : 'hover:text-blue-900 hover:bg-slate-100/70'
               }`}
             >
               流程處理 SOP
             </button>
             <button
               onClick={() => setActiveTab('faq')}
-              className={`whitespace-nowrap shrink-0 transition-colors py-1 border-b-2 text-sm ${
+              className={`whitespace-nowrap shrink-0 transition-all px-3 py-1.5 rounded-md text-sm cursor-pointer ${
                 activeTab === 'faq'
-                  ? 'border-stone-900 text-stone-900 font-semibold'
-                  : 'border-transparent hover:text-stone-900'
+                  ? 'bg-blue-50 text-blue-900 font-semibold border border-blue-200/70 shadow-xs'
+                  : 'hover:text-blue-900 hover:bg-slate-100/70'
               }`}
             >
               常見問答 FAQ
             </button>
             <button
               onClick={() => setActiveTab('talent')}
-              className={`whitespace-nowrap shrink-0 transition-colors py-1 border-b-2 text-sm ${
+              className={`whitespace-nowrap shrink-0 transition-all px-3 py-1.5 rounded-md text-sm cursor-pointer ${
                 activeTab === 'talent'
-                  ? 'border-stone-900 text-stone-900 font-semibold'
-                  : 'border-transparent hover:text-stone-900'
+                  ? 'bg-blue-50 text-blue-900 font-semibold border border-blue-200/70 shadow-xs'
+                  : 'hover:text-blue-900 hover:bg-slate-100/70'
               }`}
             >
               校園人才庫
             </button>
+
+            {/* Quick Diagnostic launcher in menu */}
             <button
               onClick={onOpenTriage}
-              className="flex items-center gap-1.5 text-stone-700 hover:text-stone-950 transition-colors whitespace-nowrap shrink-0 py-1"
+              className="flex items-center gap-1.5 ml-2 px-3 py-1.5 text-xs font-semibold text-blue-700 bg-blue-50/80 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors whitespace-nowrap shrink-0 cursor-pointer"
             >
-              <Compass className="w-3.5 h-3.5 text-stone-700" />
+              <Compass className="w-3.5 h-3.5 text-blue-600" />
               <span>分流診斷器</span>
             </button>
           </nav>
 
-          {/* Zone 3: 1 primary action */}
+          {/* Zone 3: Primary action */}
           <div className="flex items-center gap-3 shrink-0">
             <button
               onClick={onOpenExport}
-              className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium text-stone-50 bg-stone-900 hover:bg-stone-800 rounded-lg transition-colors whitespace-nowrap shrink-0 shadow-xs active:scale-[0.98]"
+              className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium text-white bg-blue-900 hover:bg-blue-800 rounded-lg transition-colors whitespace-nowrap shrink-0 shadow-xs active:scale-[0.98] cursor-pointer"
             >
               <Download className="w-3.5 h-3.5" />
               <span>匯出完整 Markdown</span>
@@ -111,36 +113,52 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* Mobile nav bar */}
-      <div className="md:hidden flex items-center justify-around border-t border-stone-200 bg-stone-100/90 px-2 py-1.5 text-xs text-stone-600">
+      <div className="md:hidden flex items-center justify-around border-t border-slate-200 bg-slate-50/95 px-2 py-2 text-xs text-slate-600">
         <button
           onClick={() => setActiveTab('legal')}
-          className={`px-2.5 py-1 rounded ${activeTab === 'legal' ? 'bg-white font-semibold text-stone-900 shadow-xs' : ''}`}
+          className={`px-2.5 py-1 rounded transition-colors ${
+            activeTab === 'legal' ? 'bg-blue-900 font-semibold text-white shadow-xs' : 'hover:text-blue-900'
+          }`}
         >
-          法規引用
+          法規
         </button>
         <button
           onClick={() => setActiveTab('org')}
-          className={`px-2.5 py-1 rounded ${activeTab === 'org' ? 'bg-white font-semibold text-stone-900 shadow-xs' : ''}`}
+          className={`px-2.5 py-1 rounded transition-colors ${
+            activeTab === 'org' ? 'bg-blue-900 font-semibold text-white shadow-xs' : 'hover:text-blue-900'
+          }`}
         >
-          組織運作
+          組織
         </button>
         <button
           onClick={() => setActiveTab('flow')}
-          className={`px-2.5 py-1 rounded ${activeTab === 'flow' ? 'bg-white font-semibold text-stone-900 shadow-xs' : ''}`}
+          className={`px-2.5 py-1 rounded transition-colors ${
+            activeTab === 'flow' ? 'bg-blue-900 font-semibold text-white shadow-xs' : 'hover:text-blue-900'
+          }`}
         >
-          SOP流程
+          SOP
         </button>
         <button
           onClick={() => setActiveTab('faq')}
-          className={`px-2.5 py-1 rounded ${activeTab === 'faq' ? 'bg-white font-semibold text-stone-900 shadow-xs' : ''}`}
+          className={`px-2.5 py-1 rounded transition-colors ${
+            activeTab === 'faq' ? 'bg-blue-900 font-semibold text-white shadow-xs' : 'hover:text-blue-900'
+          }`}
         >
-          實務QA
+          QA
         </button>
         <button
           onClick={() => setActiveTab('talent')}
-          className={`px-2.5 py-1 rounded ${activeTab === 'talent' ? 'bg-white font-semibold text-stone-900 shadow-xs' : ''}`}
+          className={`px-2.5 py-1 rounded transition-colors ${
+            activeTab === 'talent' ? 'bg-blue-900 font-semibold text-white shadow-xs' : 'hover:text-blue-900'
+          }`}
         >
-          校園人才庫
+          人才庫
+        </button>
+        <button
+          onClick={onOpenTriage}
+          className="px-2 py-1 rounded text-blue-700 font-semibold bg-blue-50 border border-blue-200"
+        >
+          診斷
         </button>
       </div>
     </header>

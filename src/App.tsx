@@ -7,7 +7,7 @@ import { FaqSection } from './components/FaqSection';
 import { TalentPoolSection } from './components/TalentPoolSection';
 import { MarkdownExportModal } from './components/MarkdownExportModal';
 import { TriageWizardModal } from './components/TriageWizardModal';
-import { Scale, BookOpen, Users, Compass, HelpCircle, FileText, ExternalLink, ShieldCheck, GraduationCap } from 'lucide-react';
+import { Scale, BookOpen, Users, Compass, HelpCircle, FileText, ExternalLink, ShieldCheck, GraduationCap, ArrowRight } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>('legal');
@@ -15,7 +15,7 @@ export default function App() {
   const [isTriageOpen, setIsTriageOpen] = useState<boolean>(false);
 
   return (
-    <div className="min-h-screen bg-stone-50 text-stone-900 flex flex-col selection:bg-stone-800 selection:text-white">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col selection:bg-blue-900 selection:text-white">
       {/* Top Navigation */}
       <Header
         activeTab={activeTab}
@@ -24,10 +24,14 @@ export default function App() {
         onOpenTriage={() => setIsTriageOpen(true)}
       />
 
-      {/* Hero Marquee Section */}
-      <section className="bg-stone-900 text-stone-100 py-12 sm:py-16 border-b border-stone-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-          <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-stone-400">
+      {/* Hero Marquee Section - Refined Calm Navy Blue Theme */}
+      <section className="bg-gradient-to-b from-slate-950 via-slate-900 to-blue-950 text-slate-100 py-12 sm:py-16 border-b border-slate-800 shadow-sm relative overflow-hidden">
+        {/* Subtle background mesh glow */}
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-80 h-80 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 relative z-10">
+          <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-sky-400">
             <span>TAIWAN EDUCATION LEGAL REFORM</span>
             <span aria-hidden="true">·</span>
             <span>民國 115 年新制修法專題</span>
@@ -39,7 +43,7 @@ export default function App() {
             <h1 className="text-3xl sm:text-5xl font-serif-tc font-bold tracking-tight text-white leading-tight">
               校事會議線上領航站
             </h1>
-            <p className="text-base sm:text-lg text-stone-300 leading-relaxed font-sans">
+            <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-sans">
               為全國高級中等以下學校行政人員、教師、家長及關心教育之公眾，提供兼具「權威法規引導」與「實務操作流程」的無障礙現代化知識庫。
             </p>
           </div>
@@ -48,9 +52,9 @@ export default function App() {
           <div className="flex flex-wrap items-center gap-3 pt-2">
             <button
               onClick={() => setIsTriageOpen(true)}
-              className="flex items-center gap-2 px-4 py-2.5 bg-white text-stone-900 hover:bg-stone-100 rounded-lg text-xs font-semibold transition-all shadow-xs active:scale-95 cursor-pointer"
+              className="flex items-center gap-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-semibold transition-all shadow-md shadow-blue-950/40 active:scale-95 cursor-pointer"
             >
-              <Compass className="w-4 h-4 text-stone-800" />
+              <Compass className="w-4 h-4 text-white" />
               <span>啟動初篩與分流診斷器</span>
             </button>
 
@@ -59,9 +63,9 @@ export default function App() {
                 setActiveTab('talent');
                 window.scrollTo({ top: 350, behavior: 'smooth' });
               }}
-              className="flex items-center gap-2 px-4 py-2.5 bg-stone-800 hover:bg-stone-700 text-amber-300 rounded-lg text-xs font-medium transition-all border border-stone-700 active:scale-95 cursor-pointer"
+              className="flex items-center gap-2 px-4 py-2.5 bg-slate-800/90 hover:bg-slate-700/90 text-sky-300 rounded-lg text-xs font-medium transition-all border border-slate-700/80 active:scale-95 cursor-pointer hover:border-sky-500/40"
             >
-              <GraduationCap className="w-4 h-4 text-amber-400" />
+              <GraduationCap className="w-4 h-4 text-sky-400" />
               <span>查詢教育部校園人才庫</span>
             </button>
 
@@ -70,38 +74,38 @@ export default function App() {
                 setActiveTab('flow');
                 window.scrollTo({ top: 350, behavior: 'smooth' });
               }}
-              className="flex items-center gap-2 px-4 py-2.5 bg-stone-800 hover:bg-stone-700 text-stone-200 rounded-lg text-xs font-medium transition-all border border-stone-700 active:scale-95 cursor-pointer"
+              className="flex items-center gap-2 px-4 py-2.5 bg-slate-800/90 hover:bg-slate-700/90 text-slate-200 rounded-lg text-xs font-medium transition-all border border-slate-700/80 active:scale-95 cursor-pointer hover:border-slate-600"
             >
-              <Scale className="w-4 h-4 text-stone-300" />
+              <Scale className="w-4 h-4 text-slate-300" />
               <span>檢閱 5 階段法定 SOP 流程</span>
             </button>
 
             <button
               onClick={() => setIsExportOpen(true)}
-              className="flex items-center gap-2 px-4 py-2.5 bg-stone-800 hover:bg-stone-700 text-stone-200 rounded-lg text-xs font-medium transition-all border border-stone-700 active:scale-95 cursor-pointer"
+              className="flex items-center gap-2 px-4 py-2.5 bg-slate-800/90 hover:bg-slate-700/90 text-slate-200 rounded-lg text-xs font-medium transition-all border border-slate-700/80 active:scale-95 cursor-pointer hover:border-slate-600"
             >
-              <FileText className="w-4 h-4 text-stone-400" />
+              <FileText className="w-4 h-4 text-slate-400" />
               <span>匯出全站 Markdown 文本</span>
             </button>
           </div>
 
           {/* Operational Metrics Strip */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-stone-800/80 text-xs text-stone-400">
-            <div>
-              <div className="font-mono text-stone-200 text-base font-bold">100% 全外聘</div>
-              <div className="mt-0.5">調查小組專家人才庫</div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-slate-800/80 text-xs text-slate-400">
+            <div className="p-3 bg-slate-900/50 rounded-lg border border-slate-800/60">
+              <div className="font-mono text-slate-100 text-base font-bold">100% 全外聘</div>
+              <div className="mt-0.5 text-slate-400">調查小組專家人才庫</div>
             </div>
-            <div>
-              <div className="font-mono text-stone-200 text-base font-bold">20 日法定通知</div>
-              <div className="mt-0.5">初篩審查與考核分流</div>
+            <div className="p-3 bg-slate-900/50 rounded-lg border border-slate-800/60">
+              <div className="font-mono text-slate-100 text-base font-bold">20 日法定通知</div>
+              <div className="mt-0.5 text-slate-400">初篩審查與考核分流</div>
             </div>
-            <div>
-              <div className="font-mono text-stone-200 text-base font-bold">7 個工作日</div>
-              <div className="mt-0.5">受理後法定召開會議</div>
+            <div className="p-3 bg-slate-900/50 rounded-lg border border-slate-800/60">
+              <div className="font-mono text-slate-100 text-base font-bold">7 個工作日</div>
+              <div className="mt-0.5 text-slate-400">受理後法定召開會議</div>
             </div>
-            <div>
-              <div className="font-mono text-amber-400 text-base font-bold">最高 3 萬元</div>
-              <div className="mt-0.5">國教署律師法律諮詢補助</div>
+            <div className="p-3 bg-slate-900/50 rounded-lg border border-slate-800/60">
+              <div className="font-mono text-sky-400 text-base font-bold">最高 3 萬元</div>
+              <div className="mt-0.5 text-slate-400">國教署律師法律諮詢補助</div>
             </div>
           </div>
         </div>
@@ -117,33 +121,81 @@ export default function App() {
       </main>
 
       {/* Institutional Footer */}
-      <footer className="mt-20 border-t border-stone-200 bg-white py-12 text-xs text-stone-600">
+      <footer className="mt-20 border-t border-slate-200 bg-white py-12 text-xs text-slate-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-stone-100 pb-6">
-            <div>
-              <div className="flex items-center gap-2 font-serif-tc font-bold text-stone-900 text-sm">
-                <span>校事會議線上領航站</span>
-                <span className="font-normal text-stone-400 font-mono text-xs">· 台灣教育法學實務指引</span>
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+            <div className="space-y-1">
+              <div className="text-sm font-bold text-slate-900 font-serif-tc flex items-center gap-2">
+                <span className="w-5 h-5 rounded bg-blue-900 text-white text-[10px] flex items-center justify-center font-bold">領</span>
+                校事會議線上領航站
               </div>
-              <p className="text-stone-500 mt-1 max-w-xl">
-                本系統依據教育部主管法規共用系統最新公布條文規劃編纂，旨在增進教育夥伴對正當法律程序、免責阻卻條款與實質調查權利之理解。
+              <p className="text-slate-500">
+                依據中華民國現行最新《教師法》、《解聘辦法》、《成績考核辦法》暨國教署補助作業要點編制
               </p>
             </div>
-
-            <div className="flex flex-wrap gap-4 text-xs font-mono text-stone-500">
-              <span className="hover:text-stone-800 transition-colors">《教師法》</span>
-              <span className="hover:text-stone-800 transition-colors">《解聘不續聘停聘資遣辦法》</span>
-              <span className="hover:text-stone-800 transition-colors">《教師成績考核辦法》</span>
-              <span className="hover:text-stone-800 transition-colors">《行政程序法》</span>
+            <div className="flex items-center gap-4 text-slate-500 text-xs">
+              <button
+                onClick={() => {
+                  setActiveTab('legal');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="hover:text-blue-900 transition-colors"
+              >
+                法規體系
+              </button>
+              <button
+                onClick={() => {
+                  setActiveTab('org');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="hover:text-blue-900 transition-colors"
+              >
+                組織法定
+              </button>
+              <button
+                onClick={() => {
+                  setActiveTab('flow');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="hover:text-blue-900 transition-colors"
+              >
+                SOP流程
+              </button>
+              <button
+                onClick={() => {
+                  setActiveTab('faq');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="hover:text-blue-900 transition-colors"
+              >
+                實務問答
+              </button>
+              <button
+                onClick={() => {
+                  setActiveTab('talent');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="hover:text-blue-900 transition-colors"
+              >
+                校園人才庫
+              </button>
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-stone-400 text-[11px]">
-            <div>
-              © 2026 校事會議線上領航站 Editorial Legal Guide. 繁體中文無障礙版.
-            </div>
-            <div>
-              法律效力仍以教育部正式發布之行政規章與司法裁判實務見解為準.
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-slate-400">
+            <p>
+              © 2026 校事會議線上領航站 · 專業教育法律導航與實務知識庫 · 本站資料僅供校園事件法律實務指引參考
+            </p>
+            <div className="flex items-center gap-4">
+              <a
+                href="https://edu.law.moe.gov.tw/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-blue-700 flex items-center gap-1 transition-colors"
+              >
+                <span>教育部主管法規共用系統</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
             </div>
           </div>
         </div>
@@ -154,7 +206,6 @@ export default function App() {
         isOpen={isExportOpen}
         onClose={() => setIsExportOpen(false)}
       />
-
       <TriageWizardModal
         isOpen={isTriageOpen}
         onClose={() => setIsTriageOpen(false)}

@@ -164,37 +164,37 @@ ${f.practicalTips.map((t) => '- ' + t).join('\n')}
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-stone-900/60 backdrop-blur-xs">
-      <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] flex flex-col shadow-xl border border-stone-200 overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-950/70 backdrop-blur-xs">
+      <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
         {/* Modal Header */}
-        <div className="px-6 py-4 border-b border-stone-200 flex items-center justify-between bg-stone-50">
+        <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
           <div className="flex items-center gap-2">
-            <FileText className="w-5 h-5 text-stone-800" />
-            <h2 className="text-lg font-serif-tc font-bold text-stone-900">
+            <FileText className="w-5 h-5 text-blue-700" />
+            <h2 className="text-lg font-serif-tc font-bold text-slate-900">
               匯出全站 Markdown 權威手冊（繁體中文規章版）
             </h2>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-stone-400 hover:text-stone-700 hover:bg-stone-200/50 transition-colors"
+            className="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200/50 transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Action bar */}
-        <div className="px-6 py-3 border-b border-stone-100 bg-white flex flex-wrap items-center justify-between gap-3 text-xs text-stone-600">
+        <div className="px-6 py-3 border-b border-slate-100 bg-white flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600">
           <p>
             內文嚴格遵守教育部官方最新法律術語，多層次標題與表格排版，複製後可直接貼入公文或校務手冊中。
           </p>
           <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={handleCopy}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-stone-900 hover:bg-stone-800 text-stone-50 rounded-lg text-xs font-medium transition-colors shadow-2xs"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 bg-blue-900 hover:bg-blue-800 text-white rounded-lg text-xs font-medium transition-colors shadow-xs cursor-pointer active:scale-95"
             >
               {copied ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-emerald-400" />
+                  <Check className="w-3.5 h-3.5 text-sky-300" />
                   <span>已複製全部文本</span>
                 </>
               ) : (
@@ -206,16 +206,16 @@ ${f.practicalTips.map((t) => '- ' + t).join('\n')}
             </button>
             <button
               onClick={handleDownload}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-lg text-xs font-medium transition-colors border border-stone-300"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 bg-slate-100 hover:bg-blue-50 hover:text-blue-900 text-slate-800 rounded-lg text-xs font-medium transition-colors border border-slate-300 cursor-pointer"
             >
-              <Download className="w-3.5 h-3.5" />
+              <Download className="w-3.5 h-3.5 text-blue-700" />
               <span>下載 .md 檔案</span>
             </button>
           </div>
         </div>
 
         {/* Modal Content Preview */}
-        <div className="flex-1 p-6 overflow-y-auto bg-stone-900 text-stone-100 font-mono text-xs leading-relaxed selection:bg-stone-700">
+        <div className="flex-1 p-6 overflow-y-auto bg-slate-950 text-slate-100 font-mono text-xs leading-relaxed selection:bg-blue-800 border-t border-slate-800">
           <pre className="whitespace-pre-wrap">{fullMarkdown}</pre>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Compass, ArrowRight, RotateCcw, CheckCircle2, AlertOctagon, HelpCircle, FileText } from 'lucide-react';
+import { X, Compass, ArrowRight, RotateCcw, CheckCircle2, AlertOctagon, HelpCircle, FileText, Scale } from 'lucide-react';
 
 interface TriageWizardModalProps {
   isOpen: boolean;
@@ -24,38 +24,38 @@ export const TriageWizardModal: React.FC<TriageWizardModalProps> = ({ isOpen, on
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-stone-900/60 backdrop-blur-xs">
-      <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-xl border border-stone-200 overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-950/70 backdrop-blur-xs">
+      <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
         {/* Header */}
-        <div className="px-6 py-4 border-b border-stone-200 flex items-center justify-between bg-stone-50">
+        <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
           <div className="flex items-center gap-2">
-            <Compass className="w-5 h-5 text-stone-800" />
-            <h2 className="text-lg font-serif-tc font-bold text-stone-900">
+            <Compass className="w-5 h-5 text-blue-700" />
+            <h2 className="text-lg font-serif-tc font-bold text-slate-900">
               校園事件初篩與分流法規決策診斷器
             </h2>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-stone-400 hover:text-stone-700 hover:bg-stone-200/50 transition-colors"
+            className="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200/50 transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Content */}
-        <div className="p-6 overflow-y-auto space-y-6 text-sm text-stone-800 flex-1">
-          <div className="p-3 bg-stone-100 rounded-lg text-xs text-stone-600 leading-relaxed border border-stone-200">
+        <div className="p-6 overflow-y-auto space-y-6 text-sm text-slate-800 flex-1">
+          <div className="p-3 bg-blue-50/70 rounded-lg text-xs text-blue-950 leading-relaxed border border-blue-200">
             本工具依據 115 年 10 月最新修正之《解聘辦法》第 4、8、9、9-1 條及《考核辦法》第 6-1 條邏輯設計，協助學校行政人員快速判斷受理與分流途徑。
           </div>
 
           {/* Step 1: 具名檢舉檢核 */}
           {step === 1 && (
             <div className="space-y-4">
-              <div className="text-xs font-mono text-stone-500">STEP 1 / 3 · 形式受理要件</div>
-              <h3 className="text-base font-bold font-serif-tc text-stone-900">
+              <div className="text-xs font-mono text-blue-700 font-semibold">STEP 1 / 3 · 形式受理要件</div>
+              <h3 className="text-base font-bold font-serif-tc text-slate-900">
                 檢舉人是否於檢舉書上具備「真實姓名」及聯絡方式？
               </h3>
-              <p className="text-xs text-stone-600 leading-relaxed">
+              <p className="text-xs text-slate-600 leading-relaxed">
                 依《解聘辦法》第 5 條第 3 項，檢舉應填具檢舉書載明姓名、聯絡電話及事實。
               </p>
 
@@ -65,12 +65,12 @@ export const TriageWizardModal: React.FC<TriageWizardModalProps> = ({ isOpen, on
                     setIsAnonymous(false);
                     setStep(2);
                   }}
-                  className="p-4 border border-stone-300 rounded-xl hover:border-stone-900 hover:bg-stone-50 text-left transition-all group"
+                  className="p-4 border border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50/40 text-left transition-all group cursor-pointer shadow-2xs"
                 >
-                  <div className="font-semibold text-stone-900 group-hover:text-stone-950">
+                  <div className="font-semibold text-slate-900 group-hover:text-blue-900">
                     A. 是，具真實姓名檢舉
                   </div>
-                  <div className="text-xs text-stone-500 mt-1">
+                  <div className="text-xs text-slate-500 mt-1">
                     檢舉書填具清楚姓名與聯絡資訊，非匿名投書。
                   </div>
                 </button>
@@ -80,12 +80,12 @@ export const TriageWizardModal: React.FC<TriageWizardModalProps> = ({ isOpen, on
                     setIsAnonymous(true);
                     setStep(15); // Sub-step for anonymous exception
                   }}
-                  className="p-4 border border-stone-300 rounded-xl hover:border-stone-900 hover:bg-stone-50 text-left transition-all group"
+                  className="p-4 border border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50/40 text-left transition-all group cursor-pointer shadow-2xs"
                 >
-                  <div className="font-semibold text-stone-900 group-hover:text-stone-950">
+                  <div className="font-semibold text-slate-900 group-hover:text-blue-900">
                     B. 否，為匿名或未具真實姓名之檢舉
                   </div>
-                  <div className="text-xs text-stone-500 mt-1">
+                  <div className="text-xs text-slate-500 mt-1">
                     黑函、網路匿名爆料、未留真實身分。
                   </div>
                 </button>
@@ -96,13 +96,13 @@ export const TriageWizardModal: React.FC<TriageWizardModalProps> = ({ isOpen, on
           {/* Step 1.5: 匿名黑函之重大事證檢核 (第9條第2項) */}
           {step === 15 && (
             <div className="space-y-4">
-              <div className="text-xs font-mono text-amber-700 font-semibold">
+              <div className="text-xs font-mono text-blue-800 font-semibold">
                 EXCEPTION · 匿名案件之實質事證檢驗（解§9Ⅱ）
               </div>
-              <h3 className="text-base font-bold font-serif-tc text-stone-900">
+              <h3 className="text-base font-bold font-serif-tc text-slate-900">
                 該匿名檢舉是否檢附極具體證據，且客觀涉及《教師法》第 14 條、第 15 條重大解聘情事？
               </h3>
-              <p className="text-xs text-stone-600 leading-relaxed">
+              <p className="text-xs text-slate-600 leading-relaxed">
                 如涉及重大性侵、重傷或暴力體罰，並附有確切直接影音事證；若僅為空泛指控或臆測則選否。
               </p>
 
@@ -112,12 +112,12 @@ export const TriageWizardModal: React.FC<TriageWizardModalProps> = ({ isOpen, on
                     setHasConcreteMajorCrime(true);
                     setStep(2);
                   }}
-                  className="p-4 border border-stone-300 rounded-xl hover:border-stone-900 hover:bg-stone-50 text-left transition-all"
+                  className="p-4 border border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50/40 text-left transition-all cursor-pointer shadow-2xs"
                 >
-                  <div className="font-semibold text-stone-900">
+                  <div className="font-semibold text-slate-900 hover:text-blue-900">
                     是，事證極為確切且涉及重大解聘罪嫌
                   </div>
-                  <div className="text-xs text-stone-500 mt-1">
+                  <div className="text-xs text-slate-500 mt-1">
                     學校依第 9 條第 2 項得本於職權繼續調查處理。
                   </div>
                 </button>
@@ -127,12 +127,12 @@ export const TriageWizardModal: React.FC<TriageWizardModalProps> = ({ isOpen, on
                     setHasConcreteMajorCrime(false);
                     setStep(100); // Result: 不受理
                   }}
-                  className="p-4 border border-stone-300 rounded-xl hover:border-stone-900 hover:bg-stone-50 text-left transition-all"
+                  className="p-4 border border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50/40 text-left transition-all cursor-pointer shadow-2xs"
                 >
-                  <div className="font-semibold text-stone-900">
+                  <div className="font-semibold text-slate-900 hover:text-blue-900">
                     否，為空泛指控或未涉第14、15條重大罪嫌
                   </div>
-                  <div className="text-xs text-stone-500 mt-1">
+                  <div className="text-xs text-slate-500 mt-1">
                     依第 9 條第 1 項第 3 款應無記名表決不予受理。
                   </div>
                 </button>
@@ -143,11 +143,11 @@ export const TriageWizardModal: React.FC<TriageWizardModalProps> = ({ isOpen, on
           {/* Step 2: 阻卻違法不罰檢核 (第4條 & 第8條) */}
           {step === 2 && (
             <div className="space-y-4">
-              <div className="text-xs font-mono text-stone-500">STEP 2 / 3 · 正當行為初篩（解§4、§8）</div>
-              <h3 className="text-base font-bold font-serif-tc text-stone-900">
+              <div className="text-xs font-mono text-blue-700 font-semibold">STEP 2 / 3 · 正當行為初篩（解§4、§8）</div>
+              <h3 className="text-base font-bold font-serif-tc text-slate-900">
                 教師被指控之行為，是否顯屬為制止暴力、自傷或正當管教之必要身體強制措施？
               </h3>
-              <p className="text-xs text-stone-600 leading-relaxed">
+              <p className="text-xs text-slate-600 leading-relaxed">
                 例如：學生互毆、意圖跳樓或持利刃，教師即時施加物理阻擋拉開；或業務上正當合理管教。
               </p>
 
@@ -157,12 +157,12 @@ export const TriageWizardModal: React.FC<TriageWizardModalProps> = ({ isOpen, on
                     setIsSelfDefenseOrJustified(true);
                     setStep(200); // Result: 第8條直接結案
                   }}
-                  className="p-4 border border-stone-300 rounded-xl hover:border-stone-900 hover:bg-stone-50 text-left transition-all"
+                  className="p-4 border border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50/40 text-left transition-all cursor-pointer shadow-2xs"
                 >
-                  <div className="font-semibold text-stone-900">
+                  <div className="font-semibold text-slate-900 hover:text-blue-900">
                     A. 是，顯屬正當防衛或緊急危害制止
                   </div>
-                  <div className="text-xs text-stone-500 mt-1">
+                  <div className="text-xs text-slate-500 mt-1">
                     符合第 4 條阻卻違法不罰要件。
                   </div>
                 </button>
@@ -172,12 +172,12 @@ export const TriageWizardModal: React.FC<TriageWizardModalProps> = ({ isOpen, on
                     setIsSelfDefenseOrJustified(false);
                     setStep(3);
                   }}
-                  className="p-4 border border-stone-300 rounded-xl hover:border-stone-900 hover:bg-stone-50 text-left transition-all"
+                  className="p-4 border border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50/40 text-left transition-all cursor-pointer shadow-2xs"
                 >
-                  <div className="font-semibold text-stone-900">
+                  <div className="font-semibold text-slate-900 hover:text-blue-900">
                     B. 否，非屬緊急阻卻事由或情節需進一步查證
                   </div>
-                  <div className="text-xs text-stone-500 mt-1">
+                  <div className="text-xs text-slate-500 mt-1">
                     進入後續情節輕重分流判定。
                   </div>
                 </button>
@@ -188,11 +188,11 @@ export const TriageWizardModal: React.FC<TriageWizardModalProps> = ({ isOpen, on
           {/* Step 3: 情節輕重與分流判定 (第9條之1 vs 第12條) */}
           {step === 3 && (
             <div className="space-y-4">
-              <div className="text-xs font-mono text-stone-500">STEP 3 / 3 · 情節輕重分流判定（解§9-1）</div>
-              <h3 className="text-base font-bold font-serif-tc text-stone-900">
+              <div className="text-xs font-mono text-blue-700 font-semibold">STEP 3 / 3 · 情節輕重分流判定（解§9-1）</div>
+              <h3 className="text-base font-bold font-serif-tc text-slate-900">
                 涉案行為是否達到《教師法》第 14 至 16 條或 18 條應予解聘、不續聘或終局停聘之程度？
               </h3>
-              <p className="text-xs text-stone-600 leading-relaxed">
+              <p className="text-xs text-slate-600 leading-relaxed">
                 由審查會議依第 3 條裁量因素衡量身心侵害、故意過失與頻率。
               </p>
 
@@ -202,12 +202,12 @@ export const TriageWizardModal: React.FC<TriageWizardModalProps> = ({ isOpen, on
                     setReachesDismissalSeverity(false);
                     setStep(300); // Result: 考核分流
                   }}
-                  className="p-4 border border-stone-300 rounded-xl hover:border-stone-900 hover:bg-stone-50 text-left transition-all"
+                  className="p-4 border border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50/40 text-left transition-all cursor-pointer shadow-2xs"
                 >
-                  <div className="font-semibold text-stone-900">
+                  <div className="font-semibold text-slate-900 hover:text-blue-900">
                     A. 未達解聘/停聘程度，但涉及成績考核懲處
                   </div>
-                  <div className="text-xs text-stone-500 mt-1">
+                  <div className="text-xs text-slate-500 mt-1">
                     如管教失當、口氣欠佳，涉及申誡或記過。
                   </div>
                 </button>
@@ -217,12 +217,12 @@ export const TriageWizardModal: React.FC<TriageWizardModalProps> = ({ isOpen, on
                     setReachesDismissalSeverity(true);
                     setStep(400); // Result: 校事會議外聘小組
                   }}
-                  className="p-4 border border-stone-300 rounded-xl hover:border-stone-900 hover:bg-stone-50 text-left transition-all"
+                  className="p-4 border border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50/40 text-left transition-all cursor-pointer shadow-2xs"
                 >
-                  <div className="font-semibold text-stone-900">
+                  <div className="font-semibold text-slate-900 hover:text-blue-900">
                     B. 情節重大，疑似涉及解聘、不續聘或終局停聘
                   </div>
-                  <div className="text-xs text-stone-500 mt-1">
+                  <div className="text-xs text-slate-500 mt-1">
                     如嚴重體罰造成傷害、重大霸凌或教學不力。
                   </div>
                 </button>
@@ -234,12 +234,12 @@ export const TriageWizardModal: React.FC<TriageWizardModalProps> = ({ isOpen, on
 
           {/* Result 100: 不受理 */}
           {step === 100 && (
-            <div className="p-5 bg-stone-100 rounded-xl border border-stone-300 space-y-4">
-              <div className="flex items-center gap-2 text-stone-900 font-bold text-base font-serif-tc">
-                <AlertOctagon className="w-5 h-5 text-stone-700" />
+            <div className="p-5 bg-slate-50 rounded-xl border border-slate-300 space-y-4">
+              <div className="flex items-center gap-2 text-slate-900 font-bold text-base font-serif-tc">
+                <AlertOctagon className="w-5 h-5 text-slate-700" />
                 <span>診斷結果：【應不予受理】（存查結案）</span>
               </div>
-              <div className="text-xs text-stone-700 leading-relaxed space-y-2">
+              <div className="text-xs text-slate-700 leading-relaxed space-y-2">
                 <p>
                   <strong>法規依據：</strong>《解聘辦法》第 9 條第 1 項第 3 款。
                 </p>
@@ -255,12 +255,12 @@ export const TriageWizardModal: React.FC<TriageWizardModalProps> = ({ isOpen, on
 
           {/* Result 200: 直接結案 */}
           {step === 200 && (
-            <div className="p-5 bg-emerald-50 rounded-xl border border-emerald-300 space-y-4">
-              <div className="flex items-center gap-2 text-emerald-950 font-bold text-base font-serif-tc">
-                <CheckCircle2 className="w-5 h-5 text-emerald-700" />
+            <div className="p-5 bg-blue-50/80 rounded-xl border border-blue-300 space-y-4">
+              <div className="flex items-center gap-2 text-blue-950 font-bold text-base font-serif-tc">
+                <CheckCircle2 className="w-5 h-5 text-blue-700" />
                 <span>診斷結果：【第 8 條阻卻違法直接結案】（免入調查）</span>
               </div>
-              <div className="text-xs text-emerald-900 leading-relaxed space-y-2">
+              <div className="text-xs text-blue-900 leading-relaxed space-y-2">
                 <p>
                   <strong>法規依據：</strong>《解聘辦法》第 4 條、第 8 條第 1 項。
                 </p>
@@ -276,12 +276,12 @@ export const TriageWizardModal: React.FC<TriageWizardModalProps> = ({ isOpen, on
 
           {/* Result 300: 考核分流 */}
           {step === 300 && (
-            <div className="p-5 bg-amber-50 rounded-xl border border-amber-300 space-y-4">
-              <div className="flex items-center gap-2 text-amber-950 font-bold text-base font-serif-tc">
-                <FileText className="w-5 h-5 text-amber-800" />
+            <div className="p-5 bg-slate-100 rounded-xl border border-slate-300 space-y-4">
+              <div className="flex items-center gap-2 text-slate-900 font-bold text-base font-serif-tc">
+                <FileText className="w-5 h-5 text-blue-700" />
                 <span>診斷結果：【第 9 條之一考核分流】（校內自辦調查）</span>
               </div>
-              <div className="text-xs text-amber-900 leading-relaxed space-y-2">
+              <div className="text-xs text-slate-800 leading-relaxed space-y-2">
                 <p>
                   <strong>法規依據：</strong>《解聘辦法》第 9 條之一、《考核辦法》第 6 條之一。
                 </p>
@@ -297,12 +297,12 @@ export const TriageWizardModal: React.FC<TriageWizardModalProps> = ({ isOpen, on
 
           {/* Result 400: 校事會議外聘小組 */}
           {step === 400 && (
-            <div className="p-5 bg-stone-900 text-stone-100 rounded-xl border border-stone-800 space-y-4">
+            <div className="p-5 bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 text-slate-100 rounded-xl border border-slate-800 space-y-4 shadow-md">
               <div className="flex items-center gap-2 font-bold text-base font-serif-tc text-white">
-                <AlertOctagon className="w-5 h-5 text-amber-400" />
+                <AlertOctagon className="w-5 h-5 text-sky-400" />
                 <span>診斷結果：【正式受理，啟動校事會議全外聘調查】</span>
               </div>
-              <div className="text-xs text-stone-300 leading-relaxed space-y-2">
+              <div className="text-xs text-slate-300 leading-relaxed space-y-2">
                 <p>
                   <strong>法規依據：</strong>《解聘辦法》第 9 條、第 12 條、第 16 條及《教師法》。
                 </p>
@@ -313,7 +313,7 @@ export const TriageWizardModal: React.FC<TriageWizardModalProps> = ({ isOpen, on
                   <br />3. 報請主管機關自人才庫推舉 3~5 倍名單，學校遴選 3 或 5 人組成調查小組（<strong>100%全外聘且含至少1名法律專家</strong>）。
                   <br />4. 調查小組自第1次會議起 <strong>2 個月內完成調查報告</strong>。
                 </p>
-                <p className="text-amber-300">
+                <p className="text-sky-300 font-semibold">
                   <strong>權益提醒：</strong>受調查教師於調查期間可申請國教署專案補助最高 30,000 元之專業律師法律諮詢費！
                 </p>
               </div>
@@ -322,17 +322,17 @@ export const TriageWizardModal: React.FC<TriageWizardModalProps> = ({ isOpen, on
         </div>
 
         {/* Modal Footer */}
-        <div className="px-6 py-3 border-t border-stone-200 bg-stone-50 flex items-center justify-between text-xs">
+        <div className="px-6 py-3 border-t border-slate-200 bg-slate-50 flex items-center justify-between text-xs">
           <button
             onClick={handleReset}
-            className="flex items-center gap-1 text-stone-600 hover:text-stone-900 font-medium"
+            className="flex items-center gap-1 text-slate-600 hover:text-blue-900 font-medium cursor-pointer"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>重新診斷</span>
           </button>
           <button
             onClick={onClose}
-            className="px-4 py-1.5 bg-stone-900 hover:bg-stone-800 text-stone-50 rounded-lg font-medium transition-colors"
+            className="px-4 py-1.5 bg-blue-900 hover:bg-blue-800 text-white rounded-lg font-medium transition-colors cursor-pointer shadow-xs"
           >
             完成關閉
           </button>
