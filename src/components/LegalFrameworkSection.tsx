@@ -120,8 +120,8 @@ export const LegalFrameworkSection: React.FC = () => {
   return (
     <section className="space-y-12">
       {/* Editorial Chapter Header */}
-      <div className="border-b border-slate-200 pb-8">
-        <div className="flex items-center gap-2 text-xs font-serif-tc tracking-widest text-blue-700 font-medium mb-2">
+      <div className="border-b border-slate-200 dark:border-slate-800 pb-8 transition-colors">
+        <div className="flex items-center gap-2 text-xs font-serif-tc tracking-widest text-blue-700 dark:text-sky-400 font-medium mb-2">
           <span>CHAPTER 01</span>
           <span aria-hidden="true">·</span>
           <span>LEGAL FRAMEWORK & REFORM</span>
@@ -130,10 +130,10 @@ export const LegalFrameworkSection: React.FC = () => {
         </div>
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl sm:text-4xl font-serif-tc font-bold text-slate-900 tracking-tight">
+            <h1 className="text-3xl sm:text-4xl font-serif-tc font-bold text-slate-900 dark:text-slate-100 tracking-tight">
               法規引用頁：母法源頭與新制變革總覽
             </h1>
-            <p className="mt-3 text-base text-slate-600 max-w-3xl leading-relaxed">
+            <p className="mt-3 text-base text-slate-600 dark:text-slate-300 max-w-3xl leading-relaxed">
               全面梳理現行最新《教師法》、民國 115 年 10 月修正之《高級中等以下學校教師解聘不續聘停聘或資遣辦法》、
               《公立高級中等以下學校教師成績考核辦法》第 6 條之一，以及教育部國教署 115 年 10 月 14 日最新訂定之
               「教師法律諮詢作業要點」。以白話拆解法理，指引行政操作與權益保障。
@@ -144,7 +144,7 @@ export const LegalFrameworkSection: React.FC = () => {
           <div className="shrink-0 flex items-center gap-2">
             <button
               onClick={() => handleOpenStatuteModal('statute-dismissal')}
-              className="flex items-center gap-2 px-4 py-2.5 bg-blue-900 hover:bg-blue-800 text-white rounded-lg text-xs font-semibold transition-all shadow-xs active:scale-95 cursor-pointer"
+              className="flex items-center gap-2 px-4 py-2.5 bg-blue-900 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-500 text-white rounded-lg text-xs font-semibold transition-all shadow-xs active:scale-95 cursor-pointer"
             >
               <BookOpen className="w-4 h-4 text-sky-300" />
               <span>彈出法規全文檢閱視窗</span>
@@ -153,31 +153,31 @@ export const LegalFrameworkSection: React.FC = () => {
         </div>
 
         {/* 115 年最新法規要點快報 (Calm Blue Slate Cards) */}
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-slate-200/80 text-xs text-slate-700">
-          <div className="p-3.5 bg-blue-50/60 rounded-xl border border-blue-200/80 shadow-2xs">
-            <div className="font-semibold text-blue-950 flex items-center gap-1.5">
-              <Scale className="w-4 h-4 text-blue-700" />
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-slate-200/80 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-300">
+          <div className="p-3.5 bg-blue-50/60 dark:bg-slate-900/80 rounded-xl border border-blue-200/80 dark:border-slate-800 shadow-2xs">
+            <div className="font-semibold text-blue-950 dark:text-sky-300 flex items-center gap-1.5">
+              <Scale className="w-4 h-4 text-blue-700 dark:text-sky-400" />
               <span>解聘辦法 & 考核辦法最新修正</span>
             </div>
-            <p className="mt-1 text-slate-600 leading-relaxed">
+            <p className="mt-1 text-slate-600 dark:text-slate-400 leading-relaxed">
               民國 115 年 10 月 7 日令公布實施。明定初篩分流機制、阻卻違法不罰結案、以及考核辦法第 6-1 條校內自查期程。
             </p>
           </div>
-          <div className="p-3.5 bg-blue-50/60 rounded-xl border border-blue-200/80 shadow-2xs">
-            <div className="font-semibold text-blue-950 flex items-center gap-1.5">
-              <ShieldAlert className="w-4 h-4 text-blue-700" />
+          <div className="p-3.5 bg-blue-50/60 dark:bg-slate-900/80 rounded-xl border border-blue-200/80 dark:border-slate-800 shadow-2xs">
+            <div className="font-semibold text-blue-950 dark:text-sky-300 flex items-center gap-1.5">
+              <ShieldAlert className="w-4 h-4 text-blue-700 dark:text-sky-400" />
               <span>全外聘人才庫制度健全化</span>
             </div>
-            <p className="mt-1 text-slate-600 leading-relaxed">
+            <p className="mt-1 text-slate-600 dark:text-slate-400 leading-relaxed">
               校事會議調查小組一律 100% 全數外聘，主管機關自中央人才庫推舉 3~5 倍名單，必須納入法律學者專家至少 1 人。
             </p>
           </div>
-          <div className="p-3.5 bg-blue-50/60 rounded-xl border border-blue-200/80 shadow-2xs">
-            <div className="font-semibold text-blue-950 flex items-center gap-1.5">
-              <Sparkles className="w-4 h-4 text-blue-700" />
+          <div className="p-3.5 bg-blue-50/60 dark:bg-slate-900/80 rounded-xl border border-blue-200/80 dark:border-slate-800 shadow-2xs">
+            <div className="font-semibold text-blue-950 dark:text-sky-300 flex items-center gap-1.5">
+              <Sparkles className="w-4 h-4 text-blue-700 dark:text-sky-400" />
               <span>教師法律諮詢專案最高補助3萬</span>
             </div>
-            <p className="mt-1 text-slate-600 leading-relaxed">
+            <p className="mt-1 text-slate-600 dark:text-slate-400 leading-relaxed">
               民國 115 年 10 月 14 日令訂定。學校組成調查小組起至報告完成止，提供受調查教師法律諮詢費用每人以 3 萬元為原則。
             </p>
           </div>
@@ -188,11 +188,11 @@ export const LegalFrameworkSection: React.FC = () => {
       <div className="space-y-4 pt-2">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
-            <h2 className="text-xl sm:text-2xl font-serif-tc font-bold text-slate-900 flex items-center gap-2">
-              <FileText className="w-5 h-5 text-blue-700" />
+            <h2 className="text-xl sm:text-2xl font-serif-tc font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
+              <FileText className="w-5 h-5 text-blue-700 dark:text-sky-400" />
               <span>四大核心法規：條文全文文字視窗與教育部官方 PDF 直通專區</span>
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 mt-1">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1">
               可直接點擊「文字視窗」在站內完整閱讀條文並列印/存為 PDF，或點擊「官方 PDF 連結」直達教育部共用系統下載官方檔案。
             </p>
           </div>
@@ -202,29 +202,29 @@ export const LegalFrameworkSection: React.FC = () => {
           {OFFICIAL_STATUTES_LIST.map((statute) => (
             <div
               key={statute.id}
-              className="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs hover:border-blue-300 hover:shadow-xs transition-all flex flex-col justify-between space-y-3"
+              className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 shadow-2xs hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-xs transition-all flex flex-col justify-between space-y-3"
             >
               <div className="space-y-1.5">
-                <div className="flex items-center justify-between text-xs font-mono text-blue-700">
-                  <span className="bg-blue-50 px-2 py-0.5 rounded border border-blue-200/70 font-semibold">
+                <div className="flex items-center justify-between text-xs font-mono text-blue-700 dark:text-sky-400">
+                  <span className="bg-blue-50 dark:bg-blue-950/70 px-2 py-0.5 rounded border border-blue-200/70 dark:border-blue-800/80 font-semibold">
                     {statute.category}
                   </span>
-                  <span className="text-slate-400 text-[11px]">{statute.promulgationDate.split('修正')[0].trim()}</span>
+                  <span className="text-slate-400 dark:text-slate-500 text-[11px]">{statute.promulgationDate.split('修正')[0].trim()}</span>
                 </div>
 
-                <h3 className="text-sm font-serif-tc font-bold text-slate-900 leading-snug">
+                <h3 className="text-sm font-serif-tc font-bold text-slate-900 dark:text-slate-100 leading-snug">
                   {statute.name}
                 </h3>
 
-                <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">
+                <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
                   {statute.summary}
                 </p>
               </div>
 
-              <div className="pt-2 border-t border-slate-100 flex flex-col gap-2">
+              <div className="pt-2 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-2">
                 <button
                   onClick={() => handleOpenStatuteModal(statute.id)}
-                  className="w-full flex items-center justify-center gap-1.5 px-3 py-1.5 bg-blue-900 hover:bg-blue-800 text-white rounded-lg text-xs font-medium transition-colors shadow-2xs cursor-pointer active:scale-95"
+                  className="w-full flex items-center justify-center gap-1.5 px-3 py-1.5 bg-blue-900 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-500 text-white rounded-lg text-xs font-medium transition-colors shadow-2xs cursor-pointer active:scale-95"
                 >
                   <Maximize2 className="w-3.5 h-3.5" />
                   <span>開啟全文文字視窗</span>
@@ -234,10 +234,10 @@ export const LegalFrameworkSection: React.FC = () => {
                   href={statute.moeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-1 px-3 py-1 bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-900 rounded-lg text-xs font-medium transition-colors border border-slate-200"
+                  className="w-full flex items-center justify-center gap-1 px-3 py-1 bg-slate-50 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 hover:text-blue-900 dark:hover:text-sky-200 rounded-lg text-xs font-medium transition-colors border border-slate-200 dark:border-slate-700"
                 >
                   <span>教育部官方 PDF 頁面</span>
-                  <ExternalLink className="w-3 h-3 text-slate-400" />
+                  <ExternalLink className="w-3 h-3 text-slate-400 dark:text-slate-500" />
                 </a>
               </div>
             </div>
@@ -249,40 +249,40 @@ export const LegalFrameworkSection: React.FC = () => {
       <div className="space-y-6 pt-4">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-xl sm:text-2xl font-serif-tc font-bold text-slate-900">
+            <h2 className="text-xl sm:text-2xl font-serif-tc font-bold text-slate-900 dark:text-slate-100">
               新舊制核心機制變革對照
             </h2>
-            <p className="text-sm text-slate-600 mt-1">
+            <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
               分析近年修法之關鍵精神：從「逢案必查、全校涉入」走向「二階段初篩分流、全外聘專業調查與人身防衛保障」。
             </p>
           </div>
         </div>
 
-        <div className="overflow-x-auto border border-slate-200 rounded-xl bg-white shadow-2xs">
-          <table className="w-full text-left text-sm text-slate-700 border-collapse">
+        <div className="overflow-x-auto border border-slate-200 dark:border-slate-800 rounded-xl bg-white dark:bg-slate-900 shadow-2xs">
+          <table className="w-full text-left text-sm text-slate-700 dark:text-slate-300 border-collapse">
             <thead>
-              <tr className="bg-slate-100/90 border-b border-slate-200 text-slate-900 font-serif-tc">
+              <tr className="bg-slate-100/90 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 font-serif-tc">
                 <th className="py-3.5 px-4 font-semibold w-1/5 whitespace-nowrap">改革面向</th>
-                <th className="py-3.5 px-4 font-semibold w-2/5 text-slate-600">修正前（舊制痛點）</th>
-                <th className="py-3.5 px-4 font-semibold w-2/5 text-blue-950">最新修正現行法規（新制突破）</th>
+                <th className="py-3.5 px-4 font-semibold w-2/5 text-slate-600 dark:text-slate-400">修正前（舊制痛點）</th>
+                <th className="py-3.5 px-4 font-semibold w-2/5 text-blue-950 dark:text-sky-300">最新修正現行法規（新制突破）</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-200">
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
               {REFORM_COMPARISONS.map((comp, idx) => (
-                <tr key={idx} className="hover:bg-slate-50/80 transition-colors">
-                  <td className="py-4 px-4 font-medium text-slate-900 align-top">
-                    <div className="font-serif-tc font-bold text-blue-950">{comp.dimension}</div>
-                    <div className="mt-2 text-xs text-slate-500 leading-normal">
-                      <span className="font-medium text-slate-700">立法理念：</span>
+                <tr key={idx} className="hover:bg-slate-50/80 dark:hover:bg-slate-800/60 transition-colors">
+                  <td className="py-4 px-4 font-medium text-slate-900 dark:text-slate-100 align-top">
+                    <div className="font-serif-tc font-bold text-blue-950 dark:text-sky-200">{comp.dimension}</div>
+                    <div className="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-normal">
+                      <span className="font-medium text-slate-700 dark:text-slate-300">立法理念：</span>
                       {comp.rationale}
                     </div>
                   </td>
-                  <td className="py-4 px-4 align-top text-slate-600 text-xs sm:text-sm leading-relaxed whitespace-pre-line bg-slate-50/50">
+                  <td className="py-4 px-4 align-top text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed whitespace-pre-line bg-slate-50/50 dark:bg-slate-950/40">
                     {comp.oldSystem}
                   </td>
-                  <td className="py-4 px-4 align-top text-slate-900 text-xs sm:text-sm leading-relaxed whitespace-pre-line bg-blue-50/25">
+                  <td className="py-4 px-4 align-top text-slate-900 dark:text-slate-100 text-xs sm:text-sm leading-relaxed whitespace-pre-line bg-blue-50/25 dark:bg-blue-950/30">
                     {comp.newSystem}
-                    <div className="mt-2 text-xs text-blue-800 font-medium">
+                    <div className="mt-2 text-xs text-blue-800 dark:text-sky-400 font-medium">
                       效益：{comp.impact}
                     </div>
                   </td>
@@ -301,29 +301,29 @@ export const LegalFrameworkSection: React.FC = () => {
             <span aria-hidden="true">·</span>
             <span>行政法規即時檢索系統</span>
           </div>
-          <h2 className="text-xl sm:text-2xl font-serif-tc font-bold text-slate-900">
+          <h2 className="text-xl sm:text-2xl font-serif-tc font-bold text-slate-900 dark:text-slate-100">
             教育部法規即時檢索與實務要訣
           </h2>
-          <p className="text-sm text-slate-600 mt-1">
+          <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
             支援條文案號、白話解讀、實務指引、標籤或原始法條全文即時模糊比對，專為第一線學校行政人員快速檢索設計。
           </p>
         </div>
 
         {/* 專用高效率搜尋列 (Dedicated High-Efficiency Search Input Box) */}
-        <div className="bg-white border-2 border-slate-300 focus-within:border-blue-800 rounded-xl p-2 sm:p-3 shadow-xs transition-all space-y-3">
+        <div className="bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-700 focus-within:border-blue-800 dark:focus-within:border-sky-500 rounded-xl p-2 sm:p-3 shadow-xs transition-all space-y-3">
           <div className="flex items-center gap-3">
-            <Search className="w-5 h-5 text-blue-700 shrink-0 ml-1" />
+            <Search className="w-5 h-5 text-blue-700 dark:text-sky-400 shrink-0 ml-1" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="輸入關鍵字即時檢索（如：阻卻違法、考核分流、終身解聘、直接結案、教學不力、終局停聘、全外聘人才庫、3萬元...）"
-              className="w-full text-sm sm:text-base text-slate-900 placeholder:text-slate-400 bg-transparent focus:outline-none"
+              className="w-full text-sm sm:text-base text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 bg-transparent focus:outline-none"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="text-xs px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-md transition-colors shrink-0 font-medium cursor-pointer"
+                className="text-xs px-2.5 py-1 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-md transition-colors shrink-0 font-medium cursor-pointer"
               >
                 清除
               </button>
@@ -331,8 +331,8 @@ export const LegalFrameworkSection: React.FC = () => {
           </div>
 
           {/* Quick-Search Hot Keyword Presets (已刪除第○條前綴，只保留實質關鍵字) */}
-          <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-100 text-xs text-slate-500">
-            <span className="font-medium text-slate-700 shrink-0">常見行政熱搜詞：</span>
+          <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400">
+            <span className="font-medium text-slate-700 dark:text-slate-300 shrink-0">常見行政熱搜詞：</span>
             {[
               '阻卻違法',
               '考核分流',
@@ -353,8 +353,8 @@ export const LegalFrameworkSection: React.FC = () => {
                 }}
                 className={`px-2.5 py-0.5 rounded transition-colors cursor-pointer ${
                   searchQuery === kw
-                    ? 'bg-blue-900 text-white font-medium shadow-2xs'
-                    : 'bg-slate-100 text-slate-700 hover:bg-blue-50 hover:text-blue-900'
+                    ? 'bg-blue-900 dark:bg-blue-600 text-white font-medium shadow-2xs'
+                    : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-900 dark:hover:text-sky-300'
                 }`}
               >
                 {kw}
@@ -365,15 +365,15 @@ export const LegalFrameworkSection: React.FC = () => {
 
         {/* Category Filter and Search Result Status */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div className="flex flex-wrap items-center gap-1.5 p-1 bg-slate-100 rounded-lg w-fit border border-slate-200">
+          <div className="flex flex-wrap items-center gap-1.5 p-1 bg-slate-100 dark:bg-slate-800/90 rounded-lg w-fit border border-slate-200 dark:border-slate-700">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap cursor-pointer ${
                   selectedCategory === cat
-                    ? 'bg-blue-900 text-white shadow-2xs font-bold'
-                    : 'text-slate-600 hover:text-slate-900'
+                    ? 'bg-blue-900 dark:bg-blue-600 text-white shadow-2xs font-bold'
+                    : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
                 }`}
               >
                 {cat}
@@ -381,15 +381,15 @@ export const LegalFrameworkSection: React.FC = () => {
             ))}
           </div>
 
-          <div className="text-xs text-slate-600 font-mono">
+          <div className="text-xs text-slate-600 dark:text-slate-400 font-mono">
             檢索結果：
-            <span className="font-bold text-blue-900 px-1 font-mono text-sm">
+            <span className="font-bold text-blue-900 dark:text-sky-400 px-1 font-mono text-sm">
               {filteredLaws.length}
             </span>
             筆相符法規條文
             {searchQuery && (
-              <span className="text-slate-500 ml-1">
-                （含關鍵字「<span className="text-blue-950 font-medium">{searchQuery}</span>」
+              <span className="text-slate-500 dark:text-slate-400 ml-1">
+                （含關鍵字「<span className="text-blue-950 dark:text-sky-300 font-medium">{searchQuery}</span>」
                 {selectedCategory !== '全部' && ` · 已套用「${selectedCategory}」分類`}）
               </span>
             )}
@@ -399,11 +399,11 @@ export const LegalFrameworkSection: React.FC = () => {
         {/* Laws List */}
         <div className="space-y-6">
           {filteredLaws.length === 0 ? (
-            <div className="text-center py-12 border border-dashed border-slate-300 rounded-xl bg-white text-slate-600 text-sm space-y-3">
+            <div className="text-center py-12 border border-dashed border-slate-300 dark:border-slate-800 rounded-xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 text-sm space-y-3">
               <div>
-                查無符合「<span className="font-semibold text-slate-900">{searchQuery}</span>」
+                查無符合「<span className="font-semibold text-slate-900 dark:text-slate-100">{searchQuery}</span>」
                 {selectedCategory !== '全部' && (
-                  <span>（於「<span className="text-blue-900 font-medium">{selectedCategory}</span>」分類中）</span>
+                  <span>（於「<span className="text-blue-900 dark:text-sky-400 font-medium">{selectedCategory}</span>」分類中）</span>
                 )}
                 之法規條文。
               </div>
@@ -411,7 +411,7 @@ export const LegalFrameworkSection: React.FC = () => {
                 {selectedCategory !== '全部' && (
                   <button
                     onClick={() => setSelectedCategory('全部')}
-                    className="text-xs px-3.5 py-1.5 bg-blue-50 text-blue-900 border border-blue-200 rounded-lg hover:bg-blue-100 transition-colors font-medium cursor-pointer"
+                    className="text-xs px-3.5 py-1.5 bg-blue-50 dark:bg-blue-950/70 text-blue-900 dark:text-sky-300 border border-blue-200 dark:border-blue-800 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors font-medium cursor-pointer"
                   >
                     在「全部法規」中搜尋
                   </button>
@@ -421,7 +421,7 @@ export const LegalFrameworkSection: React.FC = () => {
                     setSearchQuery('');
                     setSelectedCategory('全部');
                   }}
-                  className="text-xs px-3.5 py-1.5 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition-colors shadow-2xs cursor-pointer"
+                  className="text-xs px-3.5 py-1.5 bg-blue-900 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-500 text-white rounded-lg transition-colors shadow-2xs cursor-pointer"
                 >
                   清除關鍵字並重置分類
                 </button>
@@ -434,16 +434,16 @@ export const LegalFrameworkSection: React.FC = () => {
               return (
                 <div
                   key={law.id}
-                  className="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-2xs hover:border-blue-300 transition-all space-y-4"
+                  className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 sm:p-6 shadow-2xs hover:border-blue-300 dark:hover:border-blue-700 transition-all space-y-4"
                 >
                   {/* Card Header */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
-                    <div className="flex items-center gap-2 text-xs text-slate-500 font-mono">
-                      <span className="font-semibold text-blue-950">{law.source}</span>
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+                    <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 font-mono">
+                      <span className="font-semibold text-blue-950 dark:text-sky-200">{law.source}</span>
                       <span aria-hidden="true">·</span>
-                      <span className="text-slate-600">{law.category}</span>
+                      <span className="text-slate-600 dark:text-slate-400">{law.category}</span>
                       <span aria-hidden="true">·</span>
-                      <span className="font-bold text-blue-900">{law.article}</span>
+                      <span className="font-bold text-blue-900 dark:text-sky-400">{law.article}</span>
                     </div>
 
                     <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
@@ -454,7 +454,7 @@ export const LegalFrameworkSection: React.FC = () => {
                             setSearchQuery(tag);
                             setSelectedCategory('全部');
                           }}
-                          className="text-slate-600 hover:text-blue-900 hover:bg-blue-50 px-1.5 py-0.5 rounded transition-colors cursor-pointer"
+                          className="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-sky-300 hover:bg-blue-50 dark:hover:bg-slate-800 px-1.5 py-0.5 rounded transition-colors cursor-pointer"
                           title={`點擊依 #${tag} 篩選`}
                         >
                           #{tag}
@@ -465,7 +465,7 @@ export const LegalFrameworkSection: React.FC = () => {
 
                   {/* Title & Quick Actions */}
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <h3 className="text-lg sm:text-xl font-serif-tc font-bold text-slate-900">
+                    <h3 className="text-lg sm:text-xl font-serif-tc font-bold text-slate-900 dark:text-slate-100">
                       {law.title}
                     </h3>
 
@@ -473,10 +473,10 @@ export const LegalFrameworkSection: React.FC = () => {
                     <div className="flex items-center gap-2 shrink-0">
                       <button
                         onClick={() => handleOpenStatuteModal(meta.id, law.article)}
-                        className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-900 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-md transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-blue-900 dark:text-sky-300 bg-blue-50 dark:bg-blue-950/70 hover:bg-blue-100 dark:hover:bg-blue-900/60 border border-blue-200 dark:border-blue-800 rounded-md transition-colors cursor-pointer"
                         title="在獨立文字視窗中檢閱本法規條文全文"
                       >
-                        <BookOpen className="w-3.5 h-3.5 text-blue-700" />
+                        <BookOpen className="w-3.5 h-3.5 text-blue-700 dark:text-sky-400" />
                         <span>彈出全文文字視窗</span>
                       </button>
 
@@ -484,38 +484,38 @@ export const LegalFrameworkSection: React.FC = () => {
                         href={meta.moeUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-md transition-colors"
+                        className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 rounded-md transition-colors"
                         title="開啟教育部主管法規共用系統下載官方 PDF"
                       >
-                        <ExternalLink className="w-3 h-3 text-slate-500" />
+                        <ExternalLink className="w-3 h-3 text-slate-500 dark:text-slate-400" />
                         <span>教育部官方 PDF</span>
                       </a>
                     </div>
                   </div>
 
                   {/* Vernacular (白話文解讀) */}
-                  <div className="p-4 bg-slate-50 rounded-lg border border-slate-200/80 text-sm text-slate-800 leading-relaxed">
-                    <div className="font-semibold text-blue-950 mb-1 flex items-center gap-1.5">
-                      <BookOpen className="w-4 h-4 text-blue-700" />
+                  <div className="p-4 bg-slate-50 dark:bg-slate-800/60 rounded-lg border border-slate-200/80 dark:border-slate-800 text-sm text-slate-800 dark:text-slate-200 leading-relaxed">
+                    <div className="font-semibold text-blue-950 dark:text-sky-300 mb-1 flex items-center gap-1.5">
+                      <BookOpen className="w-4 h-4 text-blue-700 dark:text-sky-400" />
                       <span>法理白話文解讀</span>
                     </div>
                     <p>{law.vernacular}</p>
                   </div>
 
                   {/* Practical tip */}
-                  <div className="p-4 bg-blue-50/60 rounded-lg border border-blue-200/70 text-sm text-slate-800 leading-relaxed">
-                    <div className="font-semibold text-blue-950 mb-1 flex items-center gap-1.5">
-                      <AlertCircle className="w-4 h-4 text-blue-700" />
+                  <div className="p-4 bg-blue-50/60 dark:bg-blue-950/40 rounded-lg border border-blue-200/70 dark:border-blue-900/70 text-sm text-slate-800 dark:text-slate-200 leading-relaxed">
+                    <div className="font-semibold text-blue-950 dark:text-sky-300 mb-1 flex items-center gap-1.5">
+                      <AlertCircle className="w-4 h-4 text-blue-700 dark:text-sky-400" />
                       <span>學校行政與實務操作要訣</span>
                     </div>
-                    <p className="text-slate-700">{law.practicalTip}</p>
+                    <p className="text-slate-700 dark:text-slate-300">{law.practicalTip}</p>
                   </div>
 
                   {/* Expand Raw Statute button & inline panel */}
                   <div className="pt-2 flex flex-wrap items-center justify-between gap-2">
                     <button
                       onClick={() => setExpandedLawId(isExpanded ? null : law.id)}
-                      className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 hover:text-blue-900 transition-colors cursor-pointer"
+                      className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-sky-300 transition-colors cursor-pointer"
                     >
                       {isExpanded ? (
                         <>
@@ -532,14 +532,14 @@ export const LegalFrameworkSection: React.FC = () => {
 
                     <button
                       onClick={() => handleOpenStatuteModal(meta.id, law.article)}
-                      className="text-xs text-blue-700 hover:text-blue-950 hover:underline flex items-center gap-1 cursor-pointer font-medium"
+                      className="text-xs text-blue-700 dark:text-sky-400 hover:text-blue-950 dark:hover:text-sky-300 hover:underline flex items-center gap-1 cursor-pointer font-medium"
                     >
                       <span>在文字視窗中查閱《{meta.name}》完整所有條文 ➔</span>
                     </button>
                   </div>
 
                   {isExpanded && (
-                    <div className="mt-2 p-4 bg-slate-900 text-slate-100 rounded-lg text-xs leading-relaxed font-mono whitespace-pre-wrap relative overflow-x-auto border border-slate-800">
+                    <div className="mt-2 p-4 bg-slate-900 dark:bg-slate-950 text-slate-100 rounded-lg text-xs leading-relaxed font-mono whitespace-pre-wrap relative overflow-x-auto border border-slate-800">
                       <button
                         onClick={() => handleCopyText(law.id, law.rawText)}
                         className="absolute right-3 top-3 px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded flex items-center gap-1 text-[11px] transition-colors cursor-pointer"

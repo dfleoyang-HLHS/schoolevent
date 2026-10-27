@@ -37,18 +37,18 @@ export const FaqSection: React.FC = () => {
   return (
     <section className="space-y-12">
       {/* Chapter Header */}
-      <div className="border-b border-slate-200 pb-8">
-        <div className="flex items-center gap-2 text-xs font-serif-tc tracking-widest text-blue-700 font-medium mb-2">
+      <div className="border-b border-slate-200 dark:border-slate-800 pb-8 transition-colors">
+        <div className="flex items-center gap-2 text-xs font-serif-tc tracking-widest text-blue-700 dark:text-sky-400 font-medium mb-2">
           <span>CHAPTER 04</span>
           <span aria-hidden="true">·</span>
           <span>PRACTICAL FAQS & LEGAL ADVICE</span>
           <span aria-hidden="true">·</span>
           <span>教育現場最常遭遇痛點</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-serif-tc font-bold text-slate-900 tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-serif-tc font-bold text-slate-900 dark:text-slate-100 tracking-tight">
           常見問答頁：第一線校園法律爭議擬真詳解
         </h1>
-        <p className="mt-3 text-base text-slate-600 max-w-3xl leading-relaxed">
+        <p className="mt-3 text-base text-slate-600 dark:text-slate-300 max-w-3xl leading-relaxed">
           精選校園實務最棘手的四大核心問題（匿名黑函、情節顯著輕微判定、全外聘人才庫爭議、當事教師救濟與最新法律諮詢補助），
           提供兼具嚴謹法理與溫和實務指引之權威解答。
         </p>
@@ -57,15 +57,15 @@ export const FaqSection: React.FC = () => {
       {/* Filter and Search Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         {/* Category buttons */}
-        <div className="flex flex-wrap items-center gap-1.5 p-1 bg-slate-100 rounded-lg w-fit border border-slate-200">
+        <div className="flex flex-wrap items-center gap-1.5 p-1 bg-slate-100 dark:bg-slate-800/90 rounded-lg w-fit border border-slate-200 dark:border-slate-700">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
               className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap cursor-pointer ${
                 selectedCategory === cat
-                  ? 'bg-blue-900 text-white shadow-xs font-semibold'
-                  : 'text-slate-600 hover:text-slate-900'
+                  ? 'bg-blue-900 dark:bg-blue-600 text-white shadow-xs font-semibold'
+                  : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               {cat}
@@ -75,13 +75,13 @@ export const FaqSection: React.FC = () => {
 
         {/* Search */}
         <div className="relative w-full sm:w-72">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-slate-400 dark:text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="搜尋常見問題或條文..."
-            className="w-full pl-9 pr-4 py-2 text-xs bg-white border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors shadow-2xs"
+            className="w-full pl-9 pr-4 py-2 text-xs bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-colors shadow-2xs"
           />
         </div>
       </div>
@@ -89,7 +89,7 @@ export const FaqSection: React.FC = () => {
       {/* FAQ Accordion List */}
       <div className="space-y-5">
         {filteredFaqs.length === 0 ? (
-          <div className="text-center py-12 border border-dashed border-slate-300 rounded-xl bg-white text-slate-500 text-sm">
+          <div className="text-center py-12 border border-dashed border-slate-300 dark:border-slate-800 rounded-xl bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 text-sm">
             查無相關問題，請嘗試搜尋其他關鍵字。
           </div>
         ) : (
@@ -98,38 +98,40 @@ export const FaqSection: React.FC = () => {
             return (
               <div
                 key={faq.id}
-                className={`bg-white border rounded-xl overflow-hidden shadow-2xs transition-all ${
-                  isOpen ? 'border-blue-300 ring-1 ring-blue-100' : 'border-slate-200 hover:border-blue-300'
+                className={`bg-white dark:bg-slate-900 border rounded-xl overflow-hidden shadow-2xs transition-all ${
+                  isOpen
+                    ? 'border-blue-300 dark:border-blue-700 ring-1 ring-blue-100 dark:ring-blue-900/40'
+                    : 'border-slate-200 dark:border-slate-800 hover:border-blue-300 dark:hover:border-blue-700'
                 }`}
               >
                 {/* Accordion Header */}
                 <button
                   onClick={() => toggleAccordion(faq.id)}
                   className={`w-full text-left p-5 sm:p-6 flex items-start justify-between gap-4 cursor-pointer transition-colors ${
-                    isOpen ? 'bg-blue-50/30' : 'hover:bg-slate-50/70'
+                    isOpen ? 'bg-blue-50/30 dark:bg-blue-950/30' : 'hover:bg-slate-50/70 dark:hover:bg-slate-850/60'
                   }`}
                 >
                   <div className="space-y-1.5 pr-2">
                     <div className="flex items-center gap-2 text-xs font-mono">
-                      <span className="font-semibold text-blue-900 bg-blue-50 px-2 py-0.5 rounded border border-blue-200/60">
+                      <span className="font-semibold text-blue-900 dark:text-sky-300 bg-blue-50 dark:bg-blue-950/70 px-2 py-0.5 rounded border border-blue-200/60 dark:border-blue-800">
                         Q{faq.id.replace('faq-', '')}
                       </span>
-                      <span aria-hidden="true" className="text-slate-300">·</span>
-                      <span className="text-slate-500">{faq.category}</span>
+                      <span aria-hidden="true" className="text-slate-300 dark:text-slate-600">·</span>
+                      <span className="text-slate-500 dark:text-slate-400">{faq.category}</span>
                     </div>
 
-                    <h3 className="text-base sm:text-lg font-serif-tc font-bold text-slate-900">
+                    <h3 className="text-base sm:text-lg font-serif-tc font-bold text-slate-900 dark:text-slate-100">
                       {faq.question}
                     </h3>
 
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pt-0.5">
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed pt-0.5">
                       {faq.shortSummary}
                     </p>
                   </div>
 
-                  <div className="shrink-0 pt-1 text-slate-500">
+                  <div className="shrink-0 pt-1 text-slate-500 dark:text-slate-400">
                     {isOpen ? (
-                      <ChevronUp className="w-5 h-5 text-blue-900" />
+                      <ChevronUp className="w-5 h-5 text-blue-900 dark:text-sky-300" />
                     ) : (
                       <ChevronDown className="w-5 h-5" />
                     )}
@@ -138,18 +140,18 @@ export const FaqSection: React.FC = () => {
 
                 {/* Accordion Body */}
                 {isOpen && (
-                  <div className="px-5 pb-6 sm:px-6 sm:pb-8 pt-2 border-t border-slate-100 space-y-6 text-sm text-slate-800">
+                  <div className="px-5 pb-6 sm:px-6 sm:pb-8 pt-2 border-t border-slate-100 dark:border-slate-800 space-y-6 text-sm text-slate-800 dark:text-slate-200">
                     {/* Legal Basis Bar */}
-                    <div className="p-3 bg-slate-50 rounded-lg border border-slate-200 text-xs">
-                      <div className="font-semibold text-blue-950 mb-1.5 flex items-center gap-1.5">
-                        <BookMarked className="w-3.5 h-3.5 text-blue-700" />
+                    <div className="p-3 bg-slate-50 dark:bg-slate-850/80 rounded-lg border border-slate-200 dark:border-slate-800 text-xs">
+                      <div className="font-semibold text-blue-950 dark:text-sky-300 mb-1.5 flex items-center gap-1.5">
+                        <BookMarked className="w-3.5 h-3.5 text-blue-700 dark:text-sky-400" />
                         <span>權威法理與法規條文依據</span>
                       </div>
-                      <div className="flex flex-wrap gap-2 text-blue-950 font-mono">
+                      <div className="flex flex-wrap gap-2 text-blue-950 dark:text-sky-200 font-mono">
                         {faq.legalBasis.map((b, idx) => (
                           <span
                             key={idx}
-                            className="bg-white px-2 py-0.5 rounded border border-blue-200/70 text-blue-900 font-semibold"
+                            className="bg-white dark:bg-slate-800 px-2 py-0.5 rounded border border-blue-200/70 dark:border-blue-800 text-blue-900 dark:text-sky-300 font-semibold"
                           >
                             {b}
                           </span>
@@ -158,17 +160,17 @@ export const FaqSection: React.FC = () => {
                     </div>
 
                     {/* Detailed Answer text */}
-                    <div className="space-y-4 text-xs sm:text-sm leading-relaxed text-slate-700 whitespace-pre-wrap">
+                    <div className="space-y-4 text-xs sm:text-sm leading-relaxed text-slate-700 dark:text-slate-300 whitespace-pre-wrap">
                       {faq.detailedAnswer}
                     </div>
 
                     {/* Practical Tips */}
-                    <div className="p-4 bg-blue-50/60 rounded-xl border border-blue-200/80 text-xs space-y-2">
-                      <div className="font-semibold text-blue-950 flex items-center gap-1.5">
-                        <Lightbulb className="w-4 h-4 text-blue-700" />
+                    <div className="p-4 bg-blue-50/60 dark:bg-blue-950/40 rounded-xl border border-blue-200/80 dark:border-blue-900/60 text-xs space-y-2">
+                      <div className="font-semibold text-blue-950 dark:text-sky-300 flex items-center gap-1.5">
+                        <Lightbulb className="w-4 h-4 text-blue-700 dark:text-sky-400" />
                         <span>教育現場行政與教師行動指引（Actionable Advice）</span>
                       </div>
-                      <ul className="space-y-1.5 text-slate-700 pl-4 list-disc">
+                      <ul className="space-y-1.5 text-slate-700 dark:text-slate-300 pl-4 list-disc">
                         {faq.practicalTips.map((tip, idx) => (
                           <li key={idx}>{tip}</li>
                         ))}
@@ -179,12 +181,12 @@ export const FaqSection: React.FC = () => {
                     <div className="flex justify-end pt-2">
                       <button
                         onClick={() => handleCopyAnswer(faq)}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors shadow-2xs cursor-pointer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition-colors shadow-2xs cursor-pointer border border-slate-200 dark:border-slate-700"
                       >
                         {copiedId === faq.id ? (
                           <>
-                            <Check className="w-3.5 h-3.5 text-blue-700" />
-                            <span className="text-blue-900 font-semibold">已複製本題擬真解答</span>
+                            <Check className="w-3.5 h-3.5 text-blue-700 dark:text-sky-400" />
+                            <span className="text-blue-900 dark:text-sky-300 font-semibold">已複製本題擬真解答</span>
                           </>
                         ) : (
                           <>

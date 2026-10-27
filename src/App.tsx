@@ -17,7 +17,7 @@ export default function App() {
   const [isStatuteReaderOpen, setIsStatuteReaderOpen] = useState<boolean>(false);
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col selection:bg-blue-900 selection:text-white">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col selection:bg-blue-900 selection:text-white transition-colors">
       {/* Top Navigation */}
       <Header
         activeTab={activeTab}
@@ -132,25 +132,25 @@ export default function App() {
       </main>
 
       {/* Institutional Footer */}
-      <footer className="mt-20 border-t border-slate-200 bg-white py-12 text-xs text-slate-600 print:hidden">
+      <footer className="mt-20 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 py-12 text-xs text-slate-600 dark:text-slate-400 print:hidden transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-100 dark:border-slate-800">
             <div className="space-y-1">
-              <div className="text-sm font-bold text-slate-900 font-serif-tc flex items-center gap-2">
-                <span className="w-5 h-5 rounded bg-blue-900 text-white text-[10px] flex items-center justify-center font-bold">領</span>
+              <div className="text-sm font-bold text-slate-900 dark:text-slate-100 font-serif-tc flex items-center gap-2">
+                <span className="w-5 h-5 rounded bg-blue-900 dark:bg-blue-600 text-white text-[10px] flex items-center justify-center font-bold">領</span>
                 校事會議線上領航站
               </div>
-              <p className="text-slate-500">
+              <p className="text-slate-500 dark:text-slate-400">
                 依據中華民國現行最新《教師法》、《解聘辦法》、《成績考核辦法》暨國教署補助作業要點編制
               </p>
             </div>
-            <div className="flex items-center gap-4 text-slate-500 text-xs">
+            <div className="flex flex-wrap items-center gap-4 text-slate-500 dark:text-slate-400 text-xs">
               <button
                 onClick={() => {
                   setActiveTab('legal');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="hover:text-blue-900 transition-colors cursor-pointer"
+                className="hover:text-blue-900 dark:hover:text-sky-300 transition-colors cursor-pointer"
               >
                 法規體系
               </button>
@@ -159,7 +159,7 @@ export default function App() {
                   setActiveTab('org');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="hover:text-blue-900 transition-colors cursor-pointer"
+                className="hover:text-blue-900 dark:hover:text-sky-300 transition-colors cursor-pointer"
               >
                 組織法定
               </button>
@@ -168,7 +168,7 @@ export default function App() {
                   setActiveTab('flow');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="hover:text-blue-900 transition-colors cursor-pointer"
+                className="hover:text-blue-900 dark:hover:text-sky-300 transition-colors cursor-pointer"
               >
                 SOP流程
               </button>
@@ -177,7 +177,7 @@ export default function App() {
                   setActiveTab('faq');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="hover:text-blue-900 transition-colors cursor-pointer"
+                className="hover:text-blue-900 dark:hover:text-sky-300 transition-colors cursor-pointer"
               >
                 實務問答
               </button>
@@ -186,20 +186,20 @@ export default function App() {
                   setActiveTab('talent');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="hover:text-blue-900 transition-colors cursor-pointer"
+                className="hover:text-blue-900 dark:hover:text-sky-300 transition-colors cursor-pointer"
               >
                 校園人才庫
               </button>
               <button
                 onClick={() => setIsStatuteReaderOpen(true)}
-                className="text-blue-700 font-semibold hover:underline cursor-pointer"
+                className="text-blue-700 dark:text-sky-400 font-semibold hover:underline cursor-pointer"
               >
                 法規全文視窗 & PDF
               </button>
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-slate-400">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-slate-400 dark:text-slate-500">
             <p>
               © 2026 校事會議線上領航站 · 專業教育法律導航與實務知識庫 · 本站資料僅供校園事件法律實務指引參考
             </p>
@@ -208,7 +208,7 @@ export default function App() {
                 href="https://edu.law.moe.gov.tw/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-blue-700 flex items-center gap-1 transition-colors"
+                className="hover:text-blue-700 dark:hover:text-sky-300 flex items-center gap-1 transition-colors"
               >
                 <span>教育部主管法規共用系統官方網頁</span>
                 <ExternalLink className="w-3 h-3" />

@@ -165,32 +165,32 @@ ${f.practicalTips.map((t) => '- ' + t).join('\n')}
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-950/70 backdrop-blur-xs">
-      <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl max-w-4xl w-full max-h-[90vh] flex flex-col shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
         {/* Modal Header */}
-        <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+        <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50 dark:bg-slate-900/90">
           <div className="flex items-center gap-2">
-            <FileText className="w-5 h-5 text-blue-700" />
-            <h2 className="text-lg font-serif-tc font-bold text-slate-900">
+            <FileText className="w-5 h-5 text-blue-700 dark:text-sky-400" />
+            <h2 className="text-lg font-serif-tc font-bold text-slate-900 dark:text-slate-100">
               匯出全站 Markdown 權威手冊（繁體中文規章版）
             </h2>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200/50 transition-colors cursor-pointer"
+            className="p-1 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Action bar */}
-        <div className="px-6 py-3 border-b border-slate-100 bg-white flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600">
+        <div className="px-6 py-3 border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900/60 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600 dark:text-slate-400">
           <p>
             內文嚴格遵守教育部官方最新法律術語，多層次標題與表格排版，複製後可直接貼入公文或校務手冊中。
           </p>
           <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={handleCopy}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 bg-blue-900 hover:bg-blue-800 text-white rounded-lg text-xs font-medium transition-colors shadow-xs cursor-pointer active:scale-95"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 bg-blue-900 hover:bg-blue-800 dark:bg-blue-700 dark:hover:bg-blue-600 text-white rounded-lg text-xs font-medium transition-colors shadow-xs cursor-pointer active:scale-95"
             >
               {copied ? (
                 <>
@@ -206,9 +206,9 @@ ${f.practicalTips.map((t) => '- ' + t).join('\n')}
             </button>
             <button
               onClick={handleDownload}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 bg-slate-100 hover:bg-blue-50 hover:text-blue-900 text-slate-800 rounded-lg text-xs font-medium transition-colors border border-slate-300 cursor-pointer"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 bg-slate-100 hover:bg-blue-50 dark:bg-slate-800 dark:hover:bg-slate-700 hover:text-blue-900 dark:hover:text-sky-300 text-slate-800 dark:text-slate-200 rounded-lg text-xs font-medium transition-colors border border-slate-300 dark:border-slate-700 cursor-pointer"
             >
-              <Download className="w-3.5 h-3.5 text-blue-700" />
+              <Download className="w-3.5 h-3.5 text-blue-700 dark:text-sky-400" />
               <span>下載 .md 檔案</span>
             </button>
           </div>
